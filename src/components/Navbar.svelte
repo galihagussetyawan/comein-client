@@ -27,10 +27,11 @@
     >
   </div>
   <div class="md:flex md:justify-end gap-5">
-    <button
+    <a
+      href="/dashboard"
       class="hidden md:flex md:px-5 md:py-1 rounded-md border-2 border-kournikova-400 text-[0.9rem] font-medium hover:text-kournikova-400 bg-white"
-      >Get Started</button
-    >
+      >Get Started
+    </a>
     <button class="text-thirdTextColor hover:text-secondaryTextColor">
       <svg
         xmlns="http://www.w3.org/2000/svg"
