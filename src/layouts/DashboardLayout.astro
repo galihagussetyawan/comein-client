@@ -3,6 +3,9 @@ interface Props {
   title: string;
 }
 
+import Navbar from "../components/dashboard/Navbar.svelte";
+import Sidebar from "../components/dashboard/Sidebar.svelte";
+
 const { title } = Astro.props;
 ---
 
@@ -14,8 +17,12 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="bg-white dark:bg-backgroundColor-dark text-primaryTextColor dark:text-primaryTextColor-dark"
+    class="text-primaryTextColor dark:text-primaryTextColor-dark overflow-hidden bg-white dark:bg-backgroundColor-dark"
   >
-    <slot />
+    <Navbar />
+    <div class="flex">
+      <Sidebar />
+      <slot />
+    </div>
   </body>
 </html>
