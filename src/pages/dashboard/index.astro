@@ -1,11 +1,59 @@
 ---
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.astro";
 ---
 
 <DashboardLayout title="Dashboard">
   <div
     class="w-full max-h-[calc(100vh-6vh)] md:p-5 md:overflow-hidden md:overflow-y-auto"
   >
-    <div class="w-full">dashboard</div>
+    <!-- Performance Summary -->
+    <div>
+      <p class="font-medium text-[1.2rem]">Performance Summary</p>
+      <p class="font-light">
+        View your key profile performance metrics from the reporting period.
+      </p>
+      <div class="mt-5 md:grid md:grid-cols-3 md:rounded-md border">
+        <div class="md:p-5">
+          <p class="font-light">Impressions</p>
+          <p class="text-[2rem] font-medium">
+            925
+            <span>asdasd</span>
+          </p>
+        </div>
+        <div class="md:p-5 md:border-l">
+          <p class="font-light">Organic Engagments</p>
+          <p class="text-[2rem] font-medium">
+            925
+            <span>asdasd</span>
+          </p>
+        </div>
+        <div class="md:p-5 md:border-l">
+          <p class="font-light">Profile Actions</p>
+          <p class="text-[2rem] font-medium">
+            925
+            <span>asdasd</span>
+          </p>
+        </div>
+        <div class="md:p-5 md:col-span-full md:border-t">
+          <p class="font-light">Engagment Rate</p>
+          <p class="text-[2rem] font-medium">
+            925
+            <span>asdasd</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- END-Performance Summary -->
+
+    <!-- Audience Growth -->
+    <div class="md:mt-10">
+      <p class="font-medium text-[1.2rem]">Audience Growth</p>
+      <p class="font-light">
+        View your key profile performance metrics from the reporting period.
+      </p>
+    </div>
+    <AudienceGrowthChart />
+    <!-- END-Audience Growth -->
   </div>
 </DashboardLayout>
