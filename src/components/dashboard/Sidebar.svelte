@@ -1,5 +1,5 @@
 <aside
-  class="md:w-1/5 md:h-[calc(100vh-6vh)] md:max-h-[calc(100vh-6vh)] md:sticky md:top-[6vh] md:p-5 overflow-hidden overflow-y-visible border-r border-slate-300 bg-backgroundColor dark:bg-backgroundColor-dark"
+  class="md:w-1/5 md:h-[calc(100vh-10vh)] md:max-h-[calc(100vh-10vh)] md:sticky md:top-[10vh] md:p-5 overflow-hidden overflow-y-visible border-r border-slate-300 bg-backgroundColor dark:bg-backgroundColor-dark"
 >
   <ul>
     <li>

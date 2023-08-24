@@ -1,7 +1,9 @@
 <nav
-  class="md:h-[6vh] md:px-5 flex justify-between sticky top-0 bg-colorOnBackground dark:bg-colorOnBackground-dark border-b border-slate-300"
+  class="md:h-[10vh] md:px-5 flex justify-between sticky top-0 bg-colorOnBackground dark:bg-colorOnBackground-dark border-b border-slate-300"
 >
-  <a href="/dashboard" class="text-[1.5rem] font-bold">comein</a>
+  <a href="/dashboard" class=" md:m-auto md:ml-0 md:text-[1.5rem] md:font-bold"
+    >comein</a
+  >
   <button class="text-thirdTextColor hover:text-secondaryTextColor">
     <svg
       xmlns="http://www.w3.org/2000/svg"
