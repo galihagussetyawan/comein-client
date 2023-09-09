@@ -1,3 +1,7 @@
+<script>
+  import { isLoggedIn } from "../store/state";
+</script>
+
 <nav
   class="sticky top-0 px-5 py-2 flex justify-between items-center md:px-24 md:py-2 md:grid md:grid-cols-[10%_70%_20%] bg-colorOnBackground dark:bg-colorOnBackground-dark border-b border-slate-300"
 >
@@ -27,11 +31,19 @@
     >
   </div>
   <div class="md:flex md:justify-end gap-5">
-    <a
-      href="/dashboard"
-      class="hidden md:flex md:px-5 md:py-1 rounded-md border-2 border-kournikova-400 text-[0.9rem] font-medium hover:text-kournikova-400 bg-white"
-      >Get Started
-    </a>
+    {#if $isLoggedIn}
+      <a
+        href="/dashboard"
+        class="hidden md:flex md:px-5 md:py-1 rounded-md border-2 border-kournikova-400 text-[0.9rem] font-medium hover:text-kournikova-400 bg-white"
+        >Dashboard
+      </a>
+    {:else}
+      <a
+        href="/login"
+        class="hidden md:flex md:px-5 md:py-1 rounded-md border-2 border-kournikova-400 text-[0.9rem] font-medium hover:text-kournikova-400 bg-white"
+        >Get Started
+      </a>
+    {/if}
     <button class="text-thirdTextColor hover:text-secondaryTextColor">
       <svg
         xmlns="http://www.w3.org/2000/svg"

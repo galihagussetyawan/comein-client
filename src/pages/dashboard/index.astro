@@ -3,6 +3,12 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
 import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.astro";
 ---
 
+<script is:inline>
+if (!localStorage.getItem("profile")) {
+  window.location.replace("/login");
+}
+</script>
+
 <DashboardLayout title="Dashboard">
   <div
     class="w-full max-h-[calc(100vh-10vh)] md:p-5 md:overflow-hidden md:overflow-y-auto"
