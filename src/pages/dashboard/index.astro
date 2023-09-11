@@ -3,6 +3,7 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
 import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.astro";
 import MediaChart from "../../components/dashboard/MediaChart.svelte";
 import AccountProfile from "../../components/dashboard/AccountProfile.svelte";
+import PerformanceSummary from "../../components/dashboard/performance-summary/PerformanceSummary.svelte";
 ---
 
 <DashboardLayout title="Dashboard">
@@ -14,44 +15,7 @@ import AccountProfile from "../../components/dashboard/AccountProfile.svelte";
       API_BASE_URL={import.meta.env.API_BASE_URL}
     />
 
-    <!-- Performance Summary -->
-    <div class="md:mt-10">
-      <p class="font-medium text-[1.2rem]">Performance Summary</p>
-      <p class="font-light">
-        View your key profile performance metrics from the reporting period.
-      </p>
-      <div class="mt-5 md:grid md:grid-cols-3 md:rounded-md border">
-        <div class="md:p-5">
-          <p class="font-light">Impressions</p>
-          <p class="text-[2rem] font-medium">
-            925
-            <span>asdasd</span>
-          </p>
-        </div>
-        <div class="md:p-5 md:border-l">
-          <p class="font-light">Organic Engagments</p>
-          <p class="text-[2rem] font-medium">
-            925
-            <span>asdasd</span>
-          </p>
-        </div>
-        <div class="md:p-5 md:border-l">
-          <p class="font-light">Profile Actions</p>
-          <p class="text-[2rem] font-medium">
-            925
-            <span>asdasd</span>
-          </p>
-        </div>
-        <div class="md:p-5 md:col-span-full md:border-t">
-          <p class="font-light">Engagment Rate</p>
-          <p class="text-[2rem] font-medium">
-            925
-            <span>asdasd</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- END-Performance Summary -->
+    <PerformanceSummary client:visible />
 
     <!-- Audience Growth -->
     <div class="md:mt-10">
@@ -62,6 +26,6 @@ import AccountProfile from "../../components/dashboard/AccountProfile.svelte";
       <AudienceGrowthChart />
     </div>
     <!-- END-Audience Growth -->
-    <MediaChart client:only="svelte" BASE_URL={import.meta.env.API_BASE_URL} />
+    <MediaChart client:only="svelte" />
   </div>
 </DashboardLayout>
