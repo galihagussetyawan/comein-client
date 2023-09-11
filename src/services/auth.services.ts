@@ -12,3 +12,9 @@ export function getAccessToken(): string {
 
   return storage.accessToken;
 }
+
+export function preventUnautorize(res) {
+  if (res.status === 401) {
+    logout();
+  }
+}

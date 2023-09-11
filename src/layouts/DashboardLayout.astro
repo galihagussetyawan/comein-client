@@ -9,6 +9,12 @@ import Sidebar from "../components/dashboard/Sidebar.svelte";
 const { title } = Astro.props;
 ---
 
+<script is:inline>
+if (!localStorage.getItem("profile")) {
+  window.location.replace("/login");
+}
+</script>
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />

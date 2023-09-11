@@ -6,3 +6,5 @@ isLoggedIn.subscribe((v) => {
     isLoggedIn.set(true);
   }
 });
+
+export const account = atom<any>(null);
