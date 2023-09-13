@@ -1,9 +1,8 @@
 ---
-import DashboardLayout from "../../layouts/DashboardLayout.astro";
-import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.astro";
-import MediaChart from "../../components/dashboard/MediaChart.svelte";
 import AccountProfile from "../../components/dashboard/AccountProfile.svelte";
+import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.svelte";
 import PerformanceSummary from "../../components/dashboard/performance-summary/PerformanceSummary.svelte";
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
 ---
 
 <DashboardLayout title="Dashboard">
@@ -15,7 +14,10 @@ import PerformanceSummary from "../../components/dashboard/performance-summary/P
       API_BASE_URL={import.meta.env.API_BASE_URL}
     />
 
-    <PerformanceSummary client:visible />
+    <PerformanceSummary
+      client:visible
+      API_BASE_URL={import.meta.env.API_BASE_URL}
+    />
 
     <!-- Audience Growth -->
     <div class="md:mt-10">
@@ -23,9 +25,8 @@ import PerformanceSummary from "../../components/dashboard/performance-summary/P
       <p class="font-light">
         View your key profile performance metrics from the reporting period.
       </p>
-      <AudienceGrowthChart />
+      <AudienceGrowthChart client:only="svelte" />
     </div>
     <!-- END-Audience Growth -->
-    <MediaChart client:only="svelte" />
   </div>
 </DashboardLayout>

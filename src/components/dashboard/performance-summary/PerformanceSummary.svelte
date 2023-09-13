@@ -1,14 +1,28 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import {
-    profileInsights,
-    comparisonProfileInsights,
+    profileInsightsStore,
+    comparisonProfileInsightsStore,
   } from "../../../store/state";
   import { Popover } from "flowbite-svelte";
   import Comparison from "./ComparisonPercentage.svelte";
+  import { getProfileInsightsInstagram } from "../../../services/account.service";
+
+  export let API_BASE_URL;
 
   function parseDataInsight(name: string, data: any): number {
-    return data.insights.data.find((d) => d.name === name).value;
+    return data?.insights?.data?.find((d) => d?.name === name)?.total_value;
   }
+
+  onMount(async () => {
+    const resultProfileInsights = await getProfileInsightsInstagram(
+      API_BASE_URL,
+      "09/06/2023",
+      "09/08/2023"
+    );
+
+    profileInsightsStore.set(resultProfileInsights.data);
+  });
 </script>
 
 <div class="md:mt-10">
@@ -22,15 +36,15 @@
       <p class="font-light">Impressions</p>
       <div class="md:flex md:items-end">
         <p class="text-[2rem] font-medium">
-          {parseDataInsight("impressions", $profileInsights)}
+          {parseDataInsight("impressions", $profileInsightsStore)}
           <!-- impression value -->
         </p>
         <p id="percentage-impressions" class="md:flex md:text-[1rem] md:p-2">
           <Comparison
-            value={parseDataInsight("impressions", $profileInsights)}
+            value={parseDataInsight("impressions", $profileInsightsStore)}
             comparisonValue={parseDataInsight(
               "impressions",
-              $comparisonProfileInsights
+              $comparisonProfileInsightsStore
             )}
           />
           <!-- impression different percentage value -->
@@ -42,12 +56,15 @@
           <div class="md:divide-y">
             <div class="md:flex md:justify-between md:py-1">
               <p>This period</p>
-              <p>{parseDataInsight("impressions", $profileInsights)}</p>
+              <p>{parseDataInsight("impressions", $profileInsightsStore)}</p>
             </div>
             <div class="md:flex md:justify-between md:py-1">
               <p>Comparison period</p>
               <p>
-                {parseDataInsight("impressions", $comparisonProfileInsights)}
+                {parseDataInsight(
+                  "impressions",
+                  $comparisonProfileInsightsStore
+                )}
               </p>
             </div>
           </div>
@@ -61,14 +78,14 @@
       <p class="font-light">Reach</p>
       <div class="md:flex md:items-end">
         <p class="text-[2rem] font-medium">
-          {parseDataInsight("reach", $profileInsights)}
+          {parseDataInsight("reach", $profileInsightsStore)}
         </p>
         <p id="percentage-reach" class="md:p-2">
           <Comparison
-            value={parseDataInsight("reach", $profileInsights)}
+            value={parseDataInsight("reach", $profileInsightsStore)}
             comparisonValue={parseDataInsight(
               "reach",
-              $comparisonProfileInsights
+              $comparisonProfileInsightsStore
             )}
           />
         </p>
@@ -79,12 +96,12 @@
           <div class="md:divide-y">
             <div class="md:flex md:justify-between md:py-1">
               <p>This period</p>
-              <p>{parseDataInsight("reach", $profileInsights)}</p>
+              <p>{parseDataInsight("reach", $profileInsightsStore)}</p>
             </div>
             <div class="md:flex md:justify-between md:py-1">
               <p>Comparison period</p>
               <p>
-                {parseDataInsight("reach", $comparisonProfileInsights)}
+                {parseDataInsight("reach", $comparisonProfileInsightsStore)}
               </p>
             </div>
           </div>
@@ -98,14 +115,14 @@
       <p class="font-light">Profile Views</p>
       <div class="md:flex md:items-end">
         <p class="text-[2rem] font-medium">
-          {parseDataInsight("profile_views", $profileInsights)}
+          {parseDataInsight("profile_views", $profileInsightsStore)}
         </p>
         <p id="percentage-profile-views" class="md:p-2">
           <Comparison
-            value={parseDataInsight("profile_views", $profileInsights)}
+            value={parseDataInsight("profile_views", $profileInsightsStore)}
             comparisonValue={parseDataInsight(
               "profile_views",
-              $comparisonProfileInsights
+              $comparisonProfileInsightsStore
             )}
           />
         </p>
@@ -116,12 +133,15 @@
           <div class="md:divide-y">
             <div class="md:flex md:justify-between md:py-1">
               <p>This period</p>
-              <p>{parseDataInsight("profile_views", $profileInsights)}</p>
+              <p>{parseDataInsight("profile_views", $profileInsightsStore)}</p>
             </div>
             <div class="md:flex md:justify-between md:py-1">
               <p>Comparison period</p>
               <p>
-                {parseDataInsight("profile_views", $comparisonProfileInsights)}
+                {parseDataInsight(
+                  "profile_views",
+                  $comparisonProfileInsightsStore
+                )}
               </p>
             </div>
           </div>
@@ -135,14 +155,14 @@
       <p class="font-light">Website Clicks</p>
       <div class="md:flex md:items-end">
         <p class="text-[2rem] font-medium">
-          {parseDataInsight("website_clicks", $profileInsights)}
+          {parseDataInsight("website_clicks", $profileInsightsStore)}
         </p>
         <p id="percentage-website-clicks" class="md:p-2">
           <Comparison
-            value={parseDataInsight("website_clicks", $profileInsights)}
+            value={parseDataInsight("website_clicks", $profileInsightsStore)}
             comparisonValue={parseDataInsight(
               "website_clicks",
-              $comparisonProfileInsights
+              $comparisonProfileInsightsStore
             )}
           />
         </p>
@@ -153,12 +173,15 @@
           <div class="md:divide-y">
             <div class="md:flex md:justify-between md:py-1">
               <p>This period</p>
-              <p>{parseDataInsight("website_clicks", $profileInsights)}</p>
+              <p>{parseDataInsight("website_clicks", $profileInsightsStore)}</p>
             </div>
             <div class="md:flex md:justify-between md:py-1">
               <p>Comparison period</p>
               <p>
-                {parseDataInsight("website_clicks", $comparisonProfileInsights)}
+                {parseDataInsight(
+                  "website_clicks",
+                  $comparisonProfileInsightsStore
+                )}
               </p>
             </div>
           </div>

@@ -1,8 +1,8 @@
 <script>
+  import { Dropdown } from "flowbite-svelte";
   import { onMount } from "svelte";
-  import { Dropdown, DropdownHeader } from "flowbite-svelte";
-  import { account } from "../../store/state";
   import { getAccountInstagram } from "../../services/account.service";
+  import { accountStore } from "../../store/state";
 
   export let API_BASE_URL;
   let isShowDropdown = false;
@@ -10,7 +10,7 @@
   onMount(async () => {
     const resAccount = await getAccountInstagram(API_BASE_URL);
     if (resAccount.data) {
-      account.set(resAccount.data);
+      accountStore.set(resAccount.data);
     }
   });
 </script>
@@ -45,7 +45,7 @@
       <p class="md:font-bold">Account</p>
     </div>
     <!-- No account -->
-    {#if $account}
+    {#if $accountStore}
       <div class="md:px-3 md:py-5 md:flex md:flex-col md:gap-1">
         <div class="md:flex md:items-center md:gap-7">
           <span>
@@ -101,11 +101,11 @@
             >
               <img
                 src="https://th.bing.com/th/id/OIP.8bOtZeJyiE03WEm-67vqTQHaFu?pid=ImgDet&rs=1"
-                alt={`profile picture ${$account.username}`}
+                alt={`profile picture ${$accountStore.username}`}
                 class=" md:w-full md:h-full md:object-cover"
               />
             </div>
-            <p>{$account.username}</p>
+            <p>{$accountStore.username}</p>
           </div>
         </div>
       </div>
