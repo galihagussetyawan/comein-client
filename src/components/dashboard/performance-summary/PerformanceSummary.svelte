@@ -51,13 +51,15 @@
           <!-- impression value -->
         </p>
         <p id="percentage-impressions" class="md:flex md:text-[1rem] md:p-2">
-          <Comparison
-            value={parseDataInsight("impressions", $profileInsightsStore)}
-            comparisonValue={parseDataInsight(
-              "impressions",
-              $comparisonProfileInsightsStore
-            )}
-          />
+          {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+            <Comparison
+              value={parseDataInsight("impressions", $profileInsightsStore)}
+              comparisonValue={parseDataInsight(
+                "impressions",
+                $comparisonProfileInsightsStore
+              )}
+            />
+          {/if}
           <!-- impression different percentage value -->
         </p>
         <Popover
@@ -92,13 +94,15 @@
           {parseDataInsight("reach", $profileInsightsStore)}
         </p>
         <p id="percentage-reach" class="md:p-2">
-          <Comparison
-            value={parseDataInsight("reach", $profileInsightsStore)}
-            comparisonValue={parseDataInsight(
-              "reach",
-              $comparisonProfileInsightsStore
-            )}
-          />
+          {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+            <Comparison
+              value={parseDataInsight("reach", $profileInsightsStore)}
+              comparisonValue={parseDataInsight(
+                "reach",
+                $comparisonProfileInsightsStore
+              )}
+            />
+          {/if}
         </p>
         <Popover
           class="w-64 md:text-[0.9rem] md:font-medium"
@@ -129,13 +133,15 @@
           {parseDataInsight("profile_views", $profileInsightsStore)}
         </p>
         <p id="percentage-profile-views" class="md:p-2">
-          <Comparison
-            value={parseDataInsight("profile_views", $profileInsightsStore)}
-            comparisonValue={parseDataInsight(
-              "profile_views",
-              $comparisonProfileInsightsStore
-            )}
-          />
+          {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+            <Comparison
+              value={parseDataInsight("profile_views", $profileInsightsStore)}
+              comparisonValue={parseDataInsight(
+                "profile_views",
+                $comparisonProfileInsightsStore
+              )}
+            />
+          {/if}
         </p>
         <Popover
           class="w-64 md:text-[0.9rem] md:font-medium"
@@ -169,13 +175,15 @@
           {parseDataInsight("website_clicks", $profileInsightsStore)}
         </p>
         <p id="percentage-website-clicks" class="md:p-2">
-          <Comparison
-            value={parseDataInsight("website_clicks", $profileInsightsStore)}
-            comparisonValue={parseDataInsight(
-              "website_clicks",
-              $comparisonProfileInsightsStore
-            )}
-          />
+          {#if $profileInsightsStore && comparisonProfileInsightsStore}
+            <Comparison
+              value={parseDataInsight("website_clicks", $profileInsightsStore)}
+              comparisonValue={parseDataInsight(
+                "website_clicks",
+                $comparisonProfileInsightsStore
+              )}
+            />
+          {/if}
         </p>
         <Popover
           class="w-64 md:text-[0.9rem] md:font-medium"

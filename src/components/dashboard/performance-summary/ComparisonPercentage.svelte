@@ -25,11 +25,11 @@
         d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25"
       />
     </svg>
-    <p>{`${perDiff.toFixed(2)}%`}</p>
+    <p>{`${perDiff?.toFixed(2)}%`}</p>
   </span>
 {:else if value === comparisonValue}
   <span class="flex items-center gap-1 font-medium">
-    {`${perDiff.toFixed(2)}%`}
+    {`${perDiff?.toFixed(2)}%`}
   </span>
 {:else}
   <span class="flex items-center gap-1 font-medium text-green-500">
@@ -47,6 +47,6 @@
         d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
       />
     </svg>
-    {`${perDiff.toFixed(2)}%`}
+    {`${perDiff?.toFixed(2)}%`}
   </span>
 {/if}
