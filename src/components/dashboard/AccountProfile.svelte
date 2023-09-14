@@ -1,6 +1,7 @@
 <script>
   import { Dropdown } from "flowbite-svelte";
   import { onMount } from "svelte";
+  import { getAccountInstagram } from "../../services/account.service";
   import { accountStore } from "../../store/state";
 
   export let API_BASE_URL;
