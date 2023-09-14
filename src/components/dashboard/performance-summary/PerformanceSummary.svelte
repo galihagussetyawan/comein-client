@@ -1,12 +1,16 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import {
-    profileInsightsStore,
-    comparisonProfileInsightsStore,
-  } from "../../../store/state";
   import { Popover } from "flowbite-svelte";
-  import Comparison from "./ComparisonPercentage.svelte";
+  import { onMount } from "svelte";
   import { getProfileInsightsInstagram } from "../../../services/account.service";
+  import {
+    comparisonProfileInsightsStore,
+    comparisonSinceDateStore,
+    comparisonUntilDateStore,
+    profileInsightsStore,
+    sinceDateStore,
+    untilDateStore,
+  } from "../../../store/state";
+  import Comparison from "./ComparisonPercentage.svelte";
 
   export let API_BASE_URL;
 
@@ -15,13 +19,20 @@
   }
 
   onMount(async () => {
-    const resultProfileInsights = await getProfileInsightsInstagram(
+    const res = await getProfileInsightsInstagram(
       API_BASE_URL,
-      "09/06/2023",
-      "09/08/2023"
+      $sinceDateStore,
+      $untilDateStore
     );
 
-    profileInsightsStore.set(resultProfileInsights.data);
+    const resComparison = await getProfileInsightsInstagram(
+      API_BASE_URL,
+      $comparisonSinceDateStore,
+      $comparisonUntilDateStore
+    );
+
+    profileInsightsStore.set(res.data);
+    comparisonProfileInsightsStore.set(resComparison.data);
   });
 </script>
 

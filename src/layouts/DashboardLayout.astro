@@ -26,9 +26,9 @@ if (!localStorage.getItem("profile")) {
   <body
     class="text-primaryTextColor dark:text-primaryTextColor-dark overflow-hidden bg-white dark:bg-backgroundColor-dark"
   >
-    <Navbar />
+    <Navbar client:load />
     <div class="flex">
-      <Sidebar />
+      <Sidebar client:load />
       <slot />
     </div>
   </body>

@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <nav
   class="md:h-[10vh] md:px-5 flex justify-between sticky top-0 bg-colorOnBackground dark:bg-colorOnBackground-dark border-b border-slate-300"
 >
@@ -5,17 +8,6 @@
     >comein</a
   >
   <div class="md:flex md:items-center md:gap-5">
-    <!-- Period/Range date -->
-    <div class="md:py-1 md:px-3 md:rounded-md md:border bg-white">
-      <p class="md:text-[0.8rem] md:font-light">Range date</p>
-      <p class="md:text-[0.9rem] md:font-medium">
-        <input type="date" class="md:w-28" />
-        -->
-        <input type="date" class="md:w-28" />
-      </p>
-    </div>
-    <!-- END-Period/Range date -->
-
     <button class="text-thirdTextColor hover:text-secondaryTextColor">
       <svg
         xmlns="http://www.w3.org/2000/svg"
