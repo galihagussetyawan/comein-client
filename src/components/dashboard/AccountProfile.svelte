@@ -9,8 +9,8 @@
 
   onMount(async () => {
     const resAccount = await getAccountInstagram(API_BASE_URL);
-    if (resAccount.data) {
-      accountStore.set(resAccount.data);
+    if (resAccount?.data) {
+      accountStore?.set(resAccount?.data);
     }
   });
 </script>
@@ -101,11 +101,11 @@
             >
               <img
                 src="https://th.bing.com/th/id/OIP.8bOtZeJyiE03WEm-67vqTQHaFu?pid=ImgDet&rs=1"
-                alt={`profile picture ${$accountStore.username}`}
+                alt={`profile picture ${$accountStore?.username}`}
                 class=" md:w-full md:h-full md:object-cover"
               />
             </div>
-            <p>{$accountStore.username}</p>
+            <p>{$accountStore?.username}</p>
           </div>
         </div>
       </div>
