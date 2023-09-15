@@ -7,13 +7,17 @@ export function logout() {
 }
 
 export function getAccessToken(): string {
-  const storage = JSON.parse(localStorage.getItem("profile"));
+  try {
+    const storage = JSON.parse(localStorage?.getItem("profile"));
 
-  if (!storage.accessToken) {
+    if (!storage?.accessToken) {
+      logout();
+    }
+
+    return storage?.accessToken;
+  } catch (error) {
     logout();
   }
-
-  return storage.accessToken;
 }
 
 export function interceptorFetching(res) {
