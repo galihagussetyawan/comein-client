@@ -2,6 +2,7 @@ import { atom, onMount } from "nanostores";
 
 export const isLoggedIn = atom<boolean>(false);
 
+export const periodNameStore = atom<string>("last month");
 export const sinceDateStore = atom<string>(null);
 export const untilDateStore = atom<string>(null);
 export const comparisonSinceDateStore = atom<string>(null);
