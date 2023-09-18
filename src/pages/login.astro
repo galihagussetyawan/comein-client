@@ -6,12 +6,12 @@ import MainLayout from "../layouts/MainLayout.astro";
 const params = new URLSearchParams(window.location.search);
 
 if (localStorage.getItem("profile")) {
-  window.location.replace("/dashboard");
+  window.location.assign("/dashboard");
 }
 
 if (params.get("redirect") && params.get("data")) {
   localStorage.setItem("profile", params.get("data"));
-  window.location.replace(params.get("redirect"));
+  window.location.assign(params.get("redirect"));
 }
 </script>
 
