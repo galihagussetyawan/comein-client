@@ -48,167 +48,198 @@
     <!-- IMPRESSION SECTION -->
     <div class="md:p-5">
       <p class="font-light">Impressions</p>
-      <div class="md:flex md:items-end">
-        <p class="text-[2rem] font-medium">
-          {parseDataInsight("impressions", $profileInsightsStore)}
-          <!-- impression value -->
-        </p>
-        <p id="percentage-impressions" class="md:flex md:text-[1rem] md:p-2">
-          {#if $profileInsightsStore && $comparisonProfileInsightsStore}
-            <Comparison
-              value={parseDataInsight("impressions", $profileInsightsStore)}
-              comparisonValue={parseDataInsight(
-                "impressions",
-                $comparisonProfileInsightsStore
-              )}
-            />
-          {/if}
-          <!-- impression different percentage value -->
-        </p>
-        <Popover
-          class="w-64 md:text-[0.9rem] md:font-medium"
-          triggeredBy="#percentage-impressions"
-        >
-          <div class="md:divide-y">
-            <div class="md:flex md:justify-between md:py-1">
-              <p>This period</p>
-              <p>{parseDataInsight("impressions", $profileInsightsStore)}</p>
-            </div>
-            <div class="md:flex md:justify-between md:py-1">
-              <p>Comparison period</p>
-              <p>
-                {parseDataInsight(
+      {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+        <div class="md:flex md:items-end">
+          <p class="text-[2rem] font-medium">
+            {parseDataInsight("impressions", $profileInsightsStore)}
+            <!-- impression value -->
+          </p>
+          <p id="percentage-impressions" class="md:flex md:text-[1rem] md:p-2">
+            {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+              <Comparison
+                value={parseDataInsight("impressions", $profileInsightsStore)}
+                comparisonValue={parseDataInsight(
                   "impressions",
                   $comparisonProfileInsightsStore
                 )}
-              </p>
+              />
+            {/if}
+            <!-- impression different percentage value -->
+          </p>
+          <Popover
+            class="w-64 md:text-[0.9rem] md:font-medium"
+            triggeredBy="#percentage-impressions"
+          >
+            <div class="md:divide-y">
+              <div class="md:flex md:justify-between md:py-1">
+                <p>This period</p>
+                <p>{parseDataInsight("impressions", $profileInsightsStore)}</p>
+              </div>
+              <div class="md:flex md:justify-between md:py-1">
+                <p>Comparison period</p>
+                <p>
+                  {parseDataInsight(
+                    "impressions",
+                    $comparisonProfileInsightsStore
+                  )}
+                </p>
+              </div>
             </div>
-          </div>
-        </Popover>
-      </div>
+          </Popover>
+        </div>
+      {:else}
+        <div
+          class="md:w-full md:h-10 md:rounded-md md:bg-slate-100 md:animate-pulse"
+        />
+      {/if}
     </div>
     <!-- END - IMPRESSION SECTION -->
 
     <!-- REACH SECTION -->
     <div class="md:p-5 md:border-l">
       <p class="font-light">Reach</p>
-      <div class="md:flex md:items-end">
-        <p class="text-[2rem] font-medium">
-          {parseDataInsight("reach", $profileInsightsStore)}
-        </p>
-        <p id="percentage-reach" class="md:p-2">
-          {#if $profileInsightsStore && $comparisonProfileInsightsStore}
-            <Comparison
-              value={parseDataInsight("reach", $profileInsightsStore)}
-              comparisonValue={parseDataInsight(
-                "reach",
-                $comparisonProfileInsightsStore
-              )}
-            />
-          {/if}
-        </p>
-        <Popover
-          class="w-64 md:text-[0.9rem] md:font-medium"
-          triggeredBy="#percentage-reach"
-        >
-          <div class="md:divide-y">
-            <div class="md:flex md:justify-between md:py-1">
-              <p>This period</p>
-              <p>{parseDataInsight("reach", $profileInsightsStore)}</p>
+      {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+        <div class="md:flex md:items-end">
+          <p class="text-[2rem] font-medium">
+            {parseDataInsight("reach", $profileInsightsStore)}
+          </p>
+          <p id="percentage-reach" class="md:p-2">
+            {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+              <Comparison
+                value={parseDataInsight("reach", $profileInsightsStore)}
+                comparisonValue={parseDataInsight(
+                  "reach",
+                  $comparisonProfileInsightsStore
+                )}
+              />
+            {/if}
+          </p>
+          <Popover
+            class="w-64 md:text-[0.9rem] md:font-medium"
+            triggeredBy="#percentage-reach"
+          >
+            <div class="md:divide-y">
+              <div class="md:flex md:justify-between md:py-1">
+                <p>This period</p>
+                <p>{parseDataInsight("reach", $profileInsightsStore)}</p>
+              </div>
+              <div class="md:flex md:justify-between md:py-1">
+                <p>Comparison period</p>
+                <p>
+                  {parseDataInsight("reach", $comparisonProfileInsightsStore)}
+                </p>
+              </div>
             </div>
-            <div class="md:flex md:justify-between md:py-1">
-              <p>Comparison period</p>
-              <p>
-                {parseDataInsight("reach", $comparisonProfileInsightsStore)}
-              </p>
-            </div>
-          </div>
-        </Popover>
-      </div>
+          </Popover>
+        </div>
+      {:else}
+        <div
+          class="md:w-full md:h-10 md:rounded-md md:bg-slate-100 md:animate-pulse"
+        />
+      {/if}
     </div>
     <!-- END - REACH SECTION -->
 
     <!-- PROFILE VIEWS -->
     <div class="md:p-5 md:border-l">
       <p class="font-light">Profile Views</p>
-      <div class="md:flex md:items-end">
-        <p class="text-[2rem] font-medium">
-          {parseDataInsight("profile_views", $profileInsightsStore)}
-        </p>
-        <p id="percentage-profile-views" class="md:p-2">
-          {#if $profileInsightsStore && $comparisonProfileInsightsStore}
-            <Comparison
-              value={parseDataInsight("profile_views", $profileInsightsStore)}
-              comparisonValue={parseDataInsight(
-                "profile_views",
-                $comparisonProfileInsightsStore
-              )}
-            />
-          {/if}
-        </p>
-        <Popover
-          class="w-64 md:text-[0.9rem] md:font-medium"
-          triggeredBy="#percentage-profile-views"
-        >
-          <div class="md:divide-y">
-            <div class="md:flex md:justify-between md:py-1">
-              <p>This period</p>
-              <p>{parseDataInsight("profile_views", $profileInsightsStore)}</p>
-            </div>
-            <div class="md:flex md:justify-between md:py-1">
-              <p>Comparison period</p>
-              <p>
-                {parseDataInsight(
+      {#if $profileInsightsStore && comparisonProfileInsightsStore}
+        <div class="md:flex md:items-end">
+          <p class="text-[2rem] font-medium">
+            {parseDataInsight("profile_views", $profileInsightsStore)}
+          </p>
+          <p id="percentage-profile-views" class="md:p-2">
+            {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+              <Comparison
+                value={parseDataInsight("profile_views", $profileInsightsStore)}
+                comparisonValue={parseDataInsight(
                   "profile_views",
                   $comparisonProfileInsightsStore
                 )}
-              </p>
+              />
+            {/if}
+          </p>
+          <Popover
+            class="w-64 md:text-[0.9rem] md:font-medium"
+            triggeredBy="#percentage-profile-views"
+          >
+            <div class="md:divide-y">
+              <div class="md:flex md:justify-between md:py-1">
+                <p>This period</p>
+                <p>
+                  {parseDataInsight("profile_views", $profileInsightsStore)}
+                </p>
+              </div>
+              <div class="md:flex md:justify-between md:py-1">
+                <p>Comparison period</p>
+                <p>
+                  {parseDataInsight(
+                    "profile_views",
+                    $comparisonProfileInsightsStore
+                  )}
+                </p>
+              </div>
             </div>
-          </div>
-        </Popover>
-      </div>
+          </Popover>
+        </div>
+      {:else}
+        <div
+          class="md:w-full md:h-10 md:rounded-md md:bg-slate-100 md:animate-pulse"
+        />
+      {/if}
     </div>
     <!-- END - PROFILE VIEWS -->
 
     <!-- WEBSITE CLICKS -->
     <div class="md:p-5 md:col-span-full md:border-t">
       <p class="font-light">Website Clicks</p>
-      <div class="md:flex md:items-end">
-        <p class="text-[2rem] font-medium">
-          {parseDataInsight("website_clicks", $profileInsightsStore)}
-        </p>
-        <p id="percentage-website-clicks" class="md:p-2">
-          {#if $profileInsightsStore && comparisonProfileInsightsStore}
-            <Comparison
-              value={parseDataInsight("website_clicks", $profileInsightsStore)}
-              comparisonValue={parseDataInsight(
-                "website_clicks",
-                $comparisonProfileInsightsStore
-              )}
-            />
-          {/if}
-        </p>
-        <Popover
-          class="w-64 md:text-[0.9rem] md:font-medium"
-          triggeredBy="#percentage-website-clicks"
-        >
-          <div class="md:divide-y">
-            <div class="md:flex md:justify-between md:py-1">
-              <p>This period</p>
-              <p>{parseDataInsight("website_clicks", $profileInsightsStore)}</p>
-            </div>
-            <div class="md:flex md:justify-between md:py-1">
-              <p>Comparison period</p>
-              <p>
-                {parseDataInsight(
+      {#if $profileInsightsStore && $comparisonProfileInsightsStore}
+        <div class="md:flex md:items-end">
+          <p class="text-[2rem] font-medium">
+            {parseDataInsight("website_clicks", $profileInsightsStore)}
+          </p>
+          <p id="percentage-website-clicks" class="md:p-2">
+            {#if $profileInsightsStore && comparisonProfileInsightsStore}
+              <Comparison
+                value={parseDataInsight(
+                  "website_clicks",
+                  $profileInsightsStore
+                )}
+                comparisonValue={parseDataInsight(
                   "website_clicks",
                   $comparisonProfileInsightsStore
                 )}
-              </p>
+              />
+            {/if}
+          </p>
+          <Popover
+            class="w-64 md:text-[0.9rem] md:font-medium"
+            triggeredBy="#percentage-website-clicks"
+          >
+            <div class="md:divide-y">
+              <div class="md:flex md:justify-between md:py-1">
+                <p>This period</p>
+                <p>
+                  {parseDataInsight("website_clicks", $profileInsightsStore)}
+                </p>
+              </div>
+              <div class="md:flex md:justify-between md:py-1">
+                <p>Comparison period</p>
+                <p>
+                  {parseDataInsight(
+                    "website_clicks",
+                    $comparisonProfileInsightsStore
+                  )}
+                </p>
+              </div>
             </div>
-          </div>
-        </Popover>
-      </div>
+          </Popover>
+        </div>
+      {:else}
+        <div
+          class="md:w-full md:h-10 md:rounded-md md:bg-slate-100 md:animate-pulse"
+        />
+      {/if}
     </div>
     <!-- END - WEBSITE CLICKS -->
   </div>
