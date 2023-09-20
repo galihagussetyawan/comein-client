@@ -53,6 +53,8 @@
     untilValue = parseDateLocale($untilDateStore);
     compareSinceValue = parseDateLocale($comparisonSinceDateStore);
     compareUntilValue = parseDateLocale($comparisonUntilDateStore);
+
+    periodNameStore.set("last month");
   }
 
   function calcLastWeek() {
@@ -80,20 +82,20 @@
     untilValue = parseDateLocale($untilDateStore);
     compareSinceValue = parseDateLocale($comparisonSinceDateStore);
     compareUntilValue = parseDateLocale($comparisonUntilDateStore);
+
+    periodNameStore.set("last week");
   }
 
   onMount(() => {
-    calcLastMonth();
+    switch ($periodNameStore) {
+      case "last month":
+        calcLastMonth();
+        break;
+      case "last week":
+        calcLastWeek();
+        break;
+    }
   });
-
-  $: switch ($periodNameStore) {
-    case "last month":
-      calcLastMonth();
-      break;
-    case "last week":
-      calcLastWeek();
-      break;
-  }
 </script>
 
 <div class="md:text-[0.9rem]">
@@ -172,10 +174,6 @@
 </div>
 
 <Dropdown triggeredBy="#period-btn">
-  <DropdownItem on:click={() => periodNameStore.set("last month")}>
-    last month
-  </DropdownItem>
-  <DropdownItem on:click={() => periodNameStore.set("last week")}>
-    last week
-  </DropdownItem>
+  <DropdownItem on:click={calcLastMonth}>last month</DropdownItem>
+  <DropdownItem on:click={calcLastWeek}>last week</DropdownItem>
 </Dropdown>

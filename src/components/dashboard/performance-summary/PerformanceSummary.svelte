@@ -6,6 +6,7 @@
     comparisonProfileInsightsStore,
     comparisonSinceDateStore,
     comparisonUntilDateStore,
+    periodNameStore,
     profileInsightsStore,
     sinceDateStore,
     untilDateStore,
@@ -18,21 +19,23 @@
     return data?.insights?.data?.find((d) => d?.name === name)?.total_value;
   }
 
-  onMount(async () => {
-    const res = await getProfileInsightsInstagram(
-      API_BASE_URL,
-      $sinceDateStore,
-      $untilDateStore
-    );
+  onMount(() => {
+    periodNameStore.subscribe(async (v) => {
+      const res = await getProfileInsightsInstagram(
+        API_BASE_URL,
+        $sinceDateStore,
+        $untilDateStore
+      );
 
-    const resComparison = await getProfileInsightsInstagram(
-      API_BASE_URL,
-      $comparisonSinceDateStore,
-      $comparisonUntilDateStore
-    );
+      const resComparison = await getProfileInsightsInstagram(
+        API_BASE_URL,
+        $comparisonSinceDateStore,
+        $comparisonUntilDateStore
+      );
 
-    profileInsightsStore.set(res.data);
-    comparisonProfileInsightsStore.set(resComparison.data);
+      profileInsightsStore.set(res.data);
+      comparisonProfileInsightsStore.set(resComparison.data);
+    });
   });
 </script>
 
