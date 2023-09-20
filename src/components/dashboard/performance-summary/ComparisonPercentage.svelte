@@ -1,8 +1,7 @@
 <script lang="ts">
-  export let value;
-  export let comparisonValue;
+  export let value, comparisonValue;
 
-  const perDiff =
+  $: perDiff =
     100 * Math.abs((value - comparisonValue) / ((value + comparisonValue) / 2))
       ? 100 *
         Math.abs((value - comparisonValue) / ((value + comparisonValue) / 2))
