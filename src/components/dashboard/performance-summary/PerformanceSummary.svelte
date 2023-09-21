@@ -21,20 +21,27 @@
 
   onMount(() => {
     periodNameStore.subscribe(async (v) => {
-      const res = await getProfileInsightsInstagram(
-        API_BASE_URL,
-        $sinceDateStore,
-        $untilDateStore
-      );
-
-      const resComparison = await getProfileInsightsInstagram(
-        API_BASE_URL,
-        $comparisonSinceDateStore,
+      if (
+        $sinceDateStore &&
+        $untilDateStore &&
+        $comparisonSinceDateStore &&
         $comparisonUntilDateStore
-      );
+      ) {
+        const res = await getProfileInsightsInstagram(
+          API_BASE_URL,
+          $sinceDateStore,
+          $untilDateStore
+        );
 
-      profileInsightsStore.set(res.data);
-      comparisonProfileInsightsStore.set(resComparison.data);
+        const resComparison = await getProfileInsightsInstagram(
+          API_BASE_URL,
+          $comparisonSinceDateStore,
+          $comparisonUntilDateStore
+        );
+
+        profileInsightsStore.set(res.data);
+        comparisonProfileInsightsStore.set(resComparison.data);
+      }
     });
   });
 </script>
