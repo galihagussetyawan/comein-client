@@ -31,9 +31,8 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       <p class="font-light">
         View your key profile performance metrics from the reporting period.
       </p>
-      <AudienceGrowthChart client:only="svelte" />
+      <AudienceGrowthChart client:visible />
     </div>
     <!-- END-Audience Growth -->
-    <div class="md:h-[3000px]"></div>
   </div>
 </DashboardLayout>

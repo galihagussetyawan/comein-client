@@ -1,9 +1,10 @@
 <script lang="ts" async>
-  import ApexCharts from "apexcharts";
   import { onMount } from "svelte";
   import { profileInsightsStore } from "../../store/state";
 
   onMount(async () => {
+    const ApexCharts = (await import("apexcharts")).default;
+
     // follower count minimum 100 required
     if ($profileInsightsStore?.folowers_count > 100) {
       const series = [
