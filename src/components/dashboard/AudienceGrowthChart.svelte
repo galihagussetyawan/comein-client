@@ -111,5 +111,9 @@
 {#if $profileInsightsStore?.folowers_count > 100}
   <div id="chart-audience-growth" />
 {:else}
-  <div>required at least get 100 followers</div>
+  <div
+    class="md:h-[350px] md:flex md:justify-center md:items-center animate-pulse md:rounded-md text-gray-500 bg-slate-100"
+  >
+    Required at least get 100 followers
+  </div>
 {/if}
