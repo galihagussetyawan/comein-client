@@ -4,8 +4,10 @@
   import ImpressionsChartWeek from "./ImpressionsChartWeek.svelte";
 </script>
 
-{#if $periodNameStore === "last month"}
-  <svelte:component this={ImpressionsChartMonth} />
-{:else if $periodNameStore === "last week"}
-  <svelte:component this={ImpressionsChartWeek} />
-{/if}
+<div class="md:h-[350px]">
+  {#if $periodNameStore === "last month"}
+    <svelte:component this={ImpressionsChartMonth} />
+  {:else if $periodNameStore === "last week"}
+    <svelte:component this={ImpressionsChartWeek} />
+  {/if}
+</div>
