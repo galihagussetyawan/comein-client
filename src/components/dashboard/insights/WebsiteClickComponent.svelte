@@ -4,8 +4,10 @@
   import InsightChartWeek from "./InsightChartWeek.svelte";
 </script>
 
-{#if $periodNameStore === "last month"}
-  <svelte:component this={InsightChartMonth} name="website_clicks" />
-{:else if $periodNameStore === "last week"}
-  <svelte:component this={InsightChartWeek} name="website_clicks" />
-{/if}
+<div class="md:h-[350px]">
+  {#if $periodNameStore === "last month"}
+    <svelte:component this={InsightChartMonth} name="website_clicks" />
+  {:else if $periodNameStore === "last week"}
+    <svelte:component this={InsightChartWeek} name="website_clicks" />
+  {/if}
+</div>
