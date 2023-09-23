@@ -4,6 +4,7 @@ import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.
 import PeriodDate from "../../components/dashboard/PeriodDate.svelte";
 import ImpressionsComponent from "../../components/dashboard/impressions/ImpressionsComponent.svelte";
 import PerformanceSummary from "../../components/dashboard/performance-summary/PerformanceSummary.svelte";
+import ReachComponent from "../../components/dashboard/ReachComponent.svelte";
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
 ---
 
@@ -47,5 +48,16 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       <ImpressionsComponent client:visible />
     </div>
     <!-- END - Impressions Chart -->
+
+    <!-- Reach Chart -->
+    <div class="md:mt-10">
+      <p class="font-medium text-[1.2rem]">Reach</p>
+      <p class="font-light">
+        Total number of times the Account's media objects have been uniquely
+        viewed.
+      </p>
+    </div>
+    <ReachComponent client:visible />
   </div>
+  <!-- END - Reach Chart -->
 </DashboardLayout>
