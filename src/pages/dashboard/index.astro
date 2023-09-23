@@ -5,6 +5,7 @@ import PeriodDate from "../../components/dashboard/PeriodDate.svelte";
 import ImpressionsComponent from "../../components/dashboard/insights/ImpressionsComponent.svelte";
 import ProfileViewComponent from "../../components/dashboard/insights/ProfileViewComponent.svelte";
 import ReachComponent from "../../components/dashboard/insights/ReachComponent.svelte";
+import WebsiteClickComponent from "../../components/dashboard/insights/WebsiteClickComponent.svelte";
 import PerformanceSummary from "../../components/dashboard/performance-summary/PerformanceSummary.svelte";
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
 ---
@@ -29,16 +30,6 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       client:visible
       API_BASE_URL={import.meta.env.API_BASE_URL}
     />
-
-    <!-- Audience Growth -->
-    <div class="md:mt-10">
-      <p class="font-medium text-[1.2rem]">Audience Growth</p>
-      <p class="font-light">
-        View your key profile performance metrics from the reporting period.
-      </p>
-      <AudienceGrowthChart client:visible />
-    </div>
-    <!-- END-Audience Growth -->
 
     <!-- Impressions Chart -->
     <div class="md:mt-10">
@@ -71,5 +62,26 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       <ProfileViewComponent client:visible />
     </div>
     <!-- END - Profile Views -->
+
+    <!-- Website Clicks -->
+    <div class="md:mt-10">
+      <p class="font-medium text-[1.2rem]">Website Clicks</p>
+      <p class="font-light">
+        Total number of users who have viewed the Account's profile within the
+        specified period.
+      </p>
+      <WebsiteClickComponent client:visible />
+    </div>
+    <!-- END - Website Clicks -->
+
+    <!-- Audience Growth -->
+    <div class="md:mt-10">
+      <p class="font-medium text-[1.2rem]">Audience Growth</p>
+      <p class="font-light">
+        View your key profile performance metrics from the reporting period.
+      </p>
+      <AudienceGrowthChart client:visible />
+    </div>
+    <!-- END-Audience Growth -->
   </div>
 </DashboardLayout>
