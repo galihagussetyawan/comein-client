@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { periodNameStore } from "../../store/state";
-  import InsightChartMonth from "./insights/InsightChartMonth.svelte";
-  import InsightChartWeek from "./insights/InsightChartWeek.svelte";
+  import { periodNameStore } from "../../../store/state";
+  import InsightChartMonth from "./InsightChartMonth.svelte";
+  import InsightChartWeek from "./InsightChartWeek.svelte";
 </script>
 
 {#if $periodNameStore === "last month"}
