@@ -3,6 +3,7 @@ import AccountProfile from "../../components/dashboard/AccountProfile.svelte";
 import AudienceGrowthChart from "../../components/dashboard/AudienceGrowthChart.svelte";
 import PeriodDate from "../../components/dashboard/PeriodDate.svelte";
 import ImpressionsComponent from "../../components/dashboard/insights/ImpressionsComponent.svelte";
+import ProfileViewComponent from "../../components/dashboard/insights/ProfileViewComponent.svelte";
 import ReachComponent from "../../components/dashboard/insights/ReachComponent.svelte";
 import PerformanceSummary from "../../components/dashboard/performance-summary/PerformanceSummary.svelte";
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
@@ -56,8 +57,19 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
         Total number of times the Account's media objects have been uniquely
         viewed.
       </p>
+      <ReachComponent client:visible />
     </div>
-    <ReachComponent client:visible />
+    <!-- END - Reach Chart -->
+
+    <!-- Profile Views -->
+    <div class="md:mt-10">
+      <p class="font-medium text-[1.2rem]">Profile Views</p>
+      <p class="font-light">
+        Total number of users who have viewed the Account's profile within the
+        specified period.
+      </p>
+      <ProfileViewComponent client:visible />
+    </div>
+    <!-- END - Profile Views -->
   </div>
-  <!-- END - Reach Chart -->
 </DashboardLayout>
