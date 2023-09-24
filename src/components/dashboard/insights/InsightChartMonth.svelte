@@ -69,6 +69,21 @@
             },
           },
         },
+        annotations: {
+          xaxis: [
+            {
+              x: new Date().getDate() - 1,
+              label: {
+                borderColor: "#775DD0",
+                style: {
+                  color: "#fff",
+                  background: "#775DD0",
+                },
+                text: "Current day",
+              },
+            },
+          ],
+        },
       };
 
       const chart = new ApexCharts(
