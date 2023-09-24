@@ -62,6 +62,13 @@
             stops: [0, 90, 100],
           },
         },
+        tooltip: {
+          x: {
+            formatter: function (value) {
+              return "Day " + value;
+            },
+          },
+        },
       };
 
       const chart = new ApexCharts(
