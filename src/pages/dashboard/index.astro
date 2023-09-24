@@ -35,7 +35,8 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     <div class="md:mt-10">
       <p class="font-medium text-[1.2rem]">Impressions</p>
       <p class="font-light">
-        Total number of times the Account's media objects have been viewed.
+        The number of times your posts, stories, reels, videos and live videos
+        were on screen, including in ads.
       </p>
       <ImpressionsComponent client:visible />
     </div>
@@ -45,8 +46,10 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     <div class="md:mt-10">
       <p class="font-medium text-[1.2rem]">Reach</p>
       <p class="font-light">
-        Total number of times the Account's media objects have been uniquely
-        viewed.
+        The number of unique accounts that have seen your content, at least
+        once, including in ads. Content includes posts, stories, reels, videos
+        and live videos. Reach is different from impressions, which may include
+        multiple views of your content by the same accounts.
       </p>
       <ReachComponent client:visible />
     </div>
@@ -55,10 +58,7 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     <!-- Profile Views -->
     <div class="md:mt-10">
       <p class="font-medium text-[1.2rem]">Profile Views</p>
-      <p class="font-light">
-        Total number of users who have viewed the Account's profile within the
-        specified period.
-      </p>
+      <p class="font-light">The number of times your profile was visited.</p>
       <ProfileViewComponent client:visible />
     </div>
     <!-- END - Profile Views -->
@@ -67,8 +67,7 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     <div class="md:mt-10">
       <p class="font-medium text-[1.2rem]">Website Clicks</p>
       <p class="font-light">
-        Total number of users who have viewed the Account's profile within the
-        specified period.
+        The number of times the link to your website was tapped.
       </p>
       <WebsiteClickComponent client:visible />
     </div>
