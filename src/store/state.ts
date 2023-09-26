@@ -1,17 +1,34 @@
+import { persistentAtom } from "@nanostores/persistent";
 import { atom, onMount } from "nanostores";
 
 export const isLoggedIn = atom<boolean>(false);
 
-export const periodNameStore = atom<string>("last month");
+export const periodNameStore = persistentAtom<string>("_p", "last month", {
+  encode: JSON.stringify,
+  decode: JSON.parse,
+});
 export const sinceDateStore = atom<string>(null);
 export const untilDateStore = atom<string>(null);
 export const comparisonSinceDateStore = atom<string>(null);
 export const comparisonUntilDateStore = atom<string>(null);
 
 export const accountStore = atom<any>(null);
-export const profileInsightsStore = atom<any>(null);
-export const comparisonProfileInsightsStore = atom<any>(null);
-export const mediaInsightsStore = atom<any>(null);
+export const profileInsightsStore = persistentAtom<any>("_pi", null, {
+  encode: JSON.stringify,
+  decode: JSON.parse,
+});
+export const comparisonProfileInsightsStore = persistentAtom<any>(
+  "_cpi",
+  null,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  }
+);
+export const mediaInsightsStore = persistentAtom<any>("_mi", null, {
+  encode: JSON.stringify,
+  decode: JSON.parse,
+});
 
 onMount(isLoggedIn, () => {
   if (localStorage.getItem("profile")) {
