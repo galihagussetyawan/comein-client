@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/svelte": "^3.1.1",
     "@astrojs/tailwind": "^4.0.0",
+    "@nanostores/persistent": "^0.9.1",
     "@popperjs/core": "^2.11.8",
     "apexcharts": "^3.42.0",
     "astro": "^2.10.12",
