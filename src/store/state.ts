@@ -11,6 +11,7 @@ export const comparisonUntilDateStore = atom<string>(null);
 export const accountStore = atom<any>(null);
 export const profileInsightsStore = atom<any>(null);
 export const comparisonProfileInsightsStore = atom<any>(null);
+export const mediaInsightsStore = atom<any>(null);
 
 onMount(isLoggedIn, () => {
   if (localStorage.getItem("profile")) {

@@ -1,4 +1,5 @@
 ---
+import PublishingComponent from "../../components/dashboard/media/PublishingComponent.svelte";
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
 ---
 
@@ -6,5 +7,18 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
   <div
     class="w-full max-h-[calc(100vh-10vh)] md:p-5 md:overflow-hidden md:overflow-y-auto"
   >
+    <!-- Publishing Behavior Chart -->
+    <div class="md:mt-10">
+      <p class="font-medium text-[1.2rem]">Publishing Behavior</p>
+      <p class="font-light">
+        View the different types of posts, stories, and reels you published
+        during the selected time period.
+      </p>
+      <PublishingComponent
+        client:visible
+        API_BASE_URL={import.meta.env.API_BASE_URL}
+      />
+    </div>
+    <!-- END - Publishing Behavior Chart -->
   </div>
 </DashboardLayout>
