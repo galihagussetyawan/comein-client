@@ -102,6 +102,9 @@
           type: "datetime",
           min: new Date().setDate(sDate),
           max: new Date().setDate(uDate),
+          labels: {
+            format: "dd MMM",
+          },
         },
       };
 
