@@ -3,10 +3,11 @@ export interface IGMediaRes {
   paging: Paging;
 }
 
-interface Media {
+export interface Media {
   media_type: string;
   media_product_type: string;
   timestamp: string;
+  permalink: string;
   insights: Insights;
   id: string;
   caption?: string;

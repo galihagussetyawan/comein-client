@@ -1,5 +1,6 @@
 ---
 import PublishingComponent from "../../components/dashboard/media/PublishingComponent.svelte";
+import TopPostsComponent from "../../components/dashboard/media/TopPostsComponent.svelte";
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
 ---
 
@@ -20,5 +21,16 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       />
     </div>
     <!-- END - Publishing Behavior Chart -->
+
+    <!-- Top Posts -->
+    <div>
+      <p class="font-medium text-[1.2rem]">Top Posts</p>
+      <p class="font-light">
+        Review your top posts, stories, and reels published during the selected
+        time period, based on the post, story, or reel’s lifetime performance.
+      </p>
+      <TopPostsComponent client:visible />
+    </div>
+    <!-- END - Top Posts -->
   </div>
 </DashboardLayout>
