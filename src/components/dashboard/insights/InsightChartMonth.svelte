@@ -72,7 +72,7 @@
         annotations: {
           xaxis: [
             {
-              x: new Date().getDate() - 1,
+              x: new Date().getDate(),
               label: {
                 borderColor: "#775DD0",
                 style: {
