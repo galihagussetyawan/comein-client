@@ -24,7 +24,7 @@
 
 <div class="md:grid md:grid-cols-3 md:gap-5 md:mt-5">
   {#if medias}
-    {#each medias.splice(0, 6) as v}
+    {#each medias as v}
       <div
         class="md:max-h-[500px] md:relative p-5 text-[0.9rem] overflow-hidden rounded-md border"
       >
