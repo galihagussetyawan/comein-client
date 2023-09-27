@@ -114,4 +114,4 @@
   });
 </script>
 
-<div id="chart-publishing" />
+<div id="chart-publishing" class="md:min-h-[350px]" />

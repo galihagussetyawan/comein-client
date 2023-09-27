@@ -22,7 +22,7 @@
   }
 </script>
 
-<div class="md:grid md:grid-cols-3 md:gap-5 md:mt-5">
+<div class="md:min-h-[500px] md:grid md:grid-cols-3 md:gap-5 md:mt-5">
   {#if medias}
     {#each medias as v}
       <div
