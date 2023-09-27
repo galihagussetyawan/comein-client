@@ -11,7 +11,7 @@
   onMount(async () => {
     const ApexCharts = (await import("apexcharts")).default;
     if ($periodNameStore === "last week") {
-      const data = $profileInsightsStore.insights.data
+      const data = $profileInsightsStore?.insights?.data
         .find((v) => v.name === name)
         .values.map((v) => {
           return {
@@ -22,7 +22,7 @@
           };
         });
 
-      const compData = $comparisonProfileInsightsStore.insights.data
+      const compData = $comparisonProfileInsightsStore?.insights?.data
         .find((v) => v.name === name)
         .values.map((v) => {
           return {
