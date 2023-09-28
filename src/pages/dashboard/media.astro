@@ -1,4 +1,5 @@
 ---
+import HashtagPerformanceComponent from "../../components/dashboard/media/HashtagPerformanceComponent.svelte";
 import PublishingComponent from "../../components/dashboard/media/PublishingComponent.svelte";
 import TopPostsComponent from "../../components/dashboard/media/TopPostsComponent.svelte";
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
@@ -23,7 +24,7 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     <!-- END - Publishing Behavior Chart -->
 
     <!-- Top Posts -->
-    <div>
+    <div class="md:mt-10">
       <p class="font-medium text-[1.2rem]">Top Posts</p>
       <p class="font-light">
         Review your top posts, stories, and reels published during the selected
@@ -32,5 +33,16 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       <TopPostsComponent client:visible />
     </div>
     <!-- END - Top Posts -->
+
+    <!-- Hashtag Performance -->
+    <div class="md:top-10 md:mt-10">
+      <p class="font-medium text-[1.2rem]">Hashtag Performance</p>
+      <p class="font-light">
+        Review your hashtag usage and contrast them with hashtags that drew the
+        most engagement.
+      </p>
+    </div>
+    <HashtagPerformanceComponent client:visible />
   </div>
+  <!-- END - Hashtag Performance -->
 </DashboardLayout>
