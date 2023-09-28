@@ -53,7 +53,7 @@
   });
 </script>
 
-<div class="min-h-[500px] grid md:grid-cols-3 gap-20 md:gap-10 md:mt-5 p-5">
+<div class="md:min-h-[350px] grid md:grid-cols-3 gap-20 md:gap-10 md:mt-5 p-5">
   <!-- hashtags by engagment -->
   <div>
     <div class="flex border-b">
