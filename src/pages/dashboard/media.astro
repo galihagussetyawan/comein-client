@@ -1,4 +1,5 @@
 ---
+import BestTimeComponent from "../../components/dashboard/media/BestTimeComponent.svelte";
 import HashtagPerformanceComponent from "../../components/dashboard/media/HashtagPerformanceComponent.svelte";
 import PublishingComponent from "../../components/dashboard/media/PublishingComponent.svelte";
 import TopPostsComponent from "../../components/dashboard/media/TopPostsComponent.svelte";
@@ -44,5 +45,16 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
       <HashtagPerformanceComponent client:visible />
     </div>
     <!-- END - Hashtag Performance -->
+
+    <!-- Best Time Media -->
+    <div class="md:top-10 md:mt-10">
+      <p class="font-medium text-[1.2rem]">Best Time</p>
+      <p class="font-light">
+        Review your hashtag usage and contrast them with hashtags that drew the
+        most engagement.
+      </p>
+      <BestTimeComponent client:visible />
+    </div>
+    <!-- END - Best Time Media -->
   </div>
 </DashboardLayout>
