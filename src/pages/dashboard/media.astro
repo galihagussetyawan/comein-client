@@ -1,5 +1,6 @@
 ---
 import BestTimeComponent from "../../components/dashboard/media/BestTimeComponent.svelte";
+import CaptionPerformance from "../../components/dashboard/media/CaptionPerformance.svelte";
 import HashtagPerformanceComponent from "../../components/dashboard/media/HashtagPerformanceComponent.svelte";
 import PublishingComponent from "../../components/dashboard/media/PublishingComponent.svelte";
 import TopPostsComponent from "../../components/dashboard/media/TopPostsComponent.svelte";
@@ -54,6 +55,17 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
         most engagement.
       </p>
       <BestTimeComponent client:visible />
+    </div>
+    <!-- END - Best Time Media -->
+
+    <!-- Captions Performance -->
+    <div class="md:top-10 md:mt-10">
+      <p class="font-medium text-[1.2rem]">Captions Performance</p>
+      <p class="font-light">
+        Review your use of captions and compare them with captions that have the
+        most reach.
+      </p>
+      <CaptionPerformance client:visible />
     </div>
     <!-- END - Best Time Media -->
   </div>
