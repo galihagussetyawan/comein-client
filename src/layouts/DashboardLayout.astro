@@ -1,6 +1,7 @@
 ---
 interface Props {
   title: string;
+  isShowPeriodAndAccount?: boolean;
 }
 
 import AccountProfile from "../components/dashboard/AccountProfile.svelte";
@@ -8,7 +9,7 @@ import Navbar from "../components/dashboard/Navbar.svelte";
 import PeriodDate from "../components/dashboard/PeriodDate.svelte";
 import Sidebar from "../components/dashboard/Sidebar.svelte";
 
-const { title } = Astro.props;
+const { title, isShowPeriodAndAccount = true } = Astro.props;
 ---
 
 <script is:inline>
@@ -33,13 +34,17 @@ if (!localStorage.getItem("profile")) {
       <Sidebar client:load />
       <div class="md:w-full">
         <!-- ACCOUNT AND PERIOD DATE SECTION -->
-        <div class="md:flex md:justify-between md:p-5 z-10">
-          <AccountProfile
-            client:visible
-            API_BASE_URL={import.meta.env.API_BASE_URL}
-          />
-          <PeriodDate client:visible />
-        </div>
+        {
+          isShowPeriodAndAccount && (
+            <div class="md:flex md:justify-between md:p-5 z-10">
+              <AccountProfile
+                client:visible
+                API_BASE_URL={import.meta.env.API_BASE_URL}
+              />
+              <PeriodDate client:visible />
+            </div>
+          )
+        }
         <!-- END - ACCOUNT AND PERIOD DATE SECION -->
         <slot />
       </div>
