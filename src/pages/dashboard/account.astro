@@ -1,0 +1,20 @@
+---
+import TabComponent from "../../components/dashboard/account-settings/TabsComponent.svelte";
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+---
+
+<DashboardLayout
+  title="Account and Settings | Dashboard"
+  isShowPeriodAndAccount={false}
+>
+  <div class="md:p-5">
+    <div>
+      <p class="font-medium text-[1.2rem]">Account and Settings</p>
+      <p class="font-light">Manage your account settings.</p>
+    </div>
+
+    <div class="md:mt-5">
+      <TabComponent client:visible />
+    </div>
+  </div>
+</DashboardLayout>
