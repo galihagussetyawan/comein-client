@@ -152,7 +152,7 @@
     Best reach post time
     {#if maxDay}
       <span class="font-medium">
-        {maxDay.name} at {maxDay.x < 10 ? "0" + maxDay.max : maxDay.x}:00
+        {maxDay.name} at {maxDay.x < 10 ? "0" + maxDay.x : maxDay.x}:00
       </span>
     {/if}
   </p>
