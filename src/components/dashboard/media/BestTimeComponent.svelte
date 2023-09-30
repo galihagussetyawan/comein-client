@@ -23,7 +23,7 @@
       const isInDay = $mediaInsightsStore.filter(
         (v) =>
           new Date(v.timestamp).getDay() === day &&
-          new Date(v.timestamp).getUTCHours() === hour
+          new Date(v.timestamp).getHours() === hour
       );
 
       if (isInDay.length === 0) {
