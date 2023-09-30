@@ -146,7 +146,7 @@
   });
 </script>
 
-<div class="md:min-h-[500px]">
+<div>
   <div id="chart-best-time" class="md:min-h-[350px]" />
   <p class="text-center">
     Best reach post time
