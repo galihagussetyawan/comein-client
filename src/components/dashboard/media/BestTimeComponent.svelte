@@ -31,7 +31,7 @@
       } else {
         const reduce = isInDay
           .map((v) => v.insights.data[2].values[0].value)
-          .reduce((acc, curr) => (acc + curr) / isInDay.length);
+          .reduce((acc, curr) => Math.floor((acc + curr) / isInDay.length));
         data.push({ x: hour, y: reduce });
       }
     }
