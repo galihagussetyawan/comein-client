@@ -7,17 +7,10 @@
     y: number;
   }
 
+  let maxDay = null;
+
   onMount(async () => {
     const ApexCharts = (await import("apexcharts")).default;
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
     const sunday = [];
     const monday = [];
     const tuesday = [];
@@ -132,6 +125,19 @@
         },
       },
     };
+
+    // calculate best time for post "Days at time"
+    maxDay = options.series
+      .map((v) => {
+        const maxValue = Math.max(...v.data.map((val) => val.y));
+        return {
+          name: v.name,
+          x: v.data.findIndex((val) => val.y === maxValue),
+          y: maxValue,
+        };
+      })
+      .reduce((acc, curr) => (acc.y > curr.y ? acc : curr));
+
     const chart = new ApexCharts(
       document.querySelector("#chart-best-time"),
       options
@@ -144,6 +150,10 @@
   <div id="chart-best-time" class="md:min-h-[350px]" />
   <p class="text-center">
     Best reach post time
-    <span class="font-medium">Tuesday at 10:10</span>
+    {#if maxDay}
+      <span class="font-medium">
+        {maxDay.name} at {maxDay.x < 10 ? "0" + maxDay.max : maxDay.x}:00
+      </span>
+    {/if}
   </p>
 </div>
