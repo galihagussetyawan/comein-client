@@ -1,11 +1,13 @@
 <script>
-  import { Dropdown } from "flowbite-svelte";
+  import { Dropdown, Modal } from "flowbite-svelte";
   import { onMount } from "svelte";
+  import CompetitorsModalComponent from "../../components/dashboard/CompetitorsModalComponent.svelte";
   import { getAccountInstagram } from "../../services/account.service";
-  import { accountStore } from "../../store/state";
+  import { accountStore, competitorsStore } from "../../store/state";
 
   export let API_BASE_URL;
   let isShowCompetior = false;
+  let defaultModal = true;
 
   onMount(async () => {
     if (window.location.pathname === "/dashboard/competitors") {
@@ -167,11 +169,31 @@
 
   {#if isShowCompetior}
     <Dropdown triggeredBy="#btn-competitor" class="md:w-80">
-      <div>
-        <div class="md:w-full md:p-3 md:border-b">
-          <p class="md:font-bold">Competitors</p>
+      <div class="md:w-full md:p-3 md:border-b">
+        <p class="md:font-bold">Competitors</p>
+      </div>
+      {#if $competitorsStore && $competitorsStore.length > 0}
+        <ul>
+          <li>
+            <p>asdasdasd</p>
+          </li>
+        </ul>
+      {:else}
+        <div class="md:px-3 md:py-5 flex items-center justify-center">
+          <p class=" md:font-medium">No Competitors</p>
         </div>
+      {/if}
+      <div class="md:flex justify-between md:p-3 border-t">
+        <button class="font-light">Remove</button>
+        <button
+          class="font-medium text-ecstasy-600"
+          on:click={() => (defaultModal = true)}>Add</button
+        >
       </div>
     </Dropdown>
   {/if}
 </div>
+
+<Modal title="Add Competitor" bind:open={defaultModal}>
+  <CompetitorsModalComponent />
+</Modal>
