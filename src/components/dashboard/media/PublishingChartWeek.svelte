@@ -7,51 +7,56 @@
     untilDateStore,
   } from "../../../store/state";
 
+  function getCountByDateAndType(data, date, typeName) {
+    return data.filter(
+      (v) =>
+        new Date(v.timestamp).getDate() === date &&
+        (v.media_type === typeName || v.media_product_type === typeName)
+    ).length;
+  }
+
   onMount(async () => {
     const ApexCharts = (await import("apexcharts")).default;
 
     if ($periodNameStore === "last week") {
-      function getCountByDateAndType(data, date, typeName) {
-        return data.filter(
-          (v) =>
-            new Date(v.timestamp).getDate() === date &&
-            (v.media_type === typeName || v.media_product_type === typeName)
-        ).length;
-      }
-
       const images = [];
       const carouselAlbums = [];
       const videos = [];
       const storeis = [];
       const reels = [];
 
-      const sDate = new Date($sinceDateStore).getDate();
-      const uDate = new Date($untilDateStore).getDate();
-
-      for (let i = sDate; i <= uDate; i++) {
+      for (
+        let i = new Date($sinceDateStore);
+        i <= new Date($untilDateStore);
+        i.setDate(i.getDate() + 1)
+      ) {
         images.push({
-          x: new Date().setDate(i),
-          y: getCountByDateAndType($mediaInsightsStore, i, "IMAGE"),
+          x: i.getTime(),
+          y: getCountByDateAndType($mediaInsightsStore, i.getDate(), "IMAGE"),
         });
 
         carouselAlbums.push({
-          x: new Date().setDate(i),
-          y: getCountByDateAndType($mediaInsightsStore, i, "CAROUSEL_ALBUM"),
+          x: i.getTime(),
+          y: getCountByDateAndType(
+            $mediaInsightsStore,
+            i.getDate(),
+            "CAROUSEL_ALBUM"
+          ),
         });
 
         videos.push({
-          x: new Date().setDate(i),
-          y: getCountByDateAndType($mediaInsightsStore, i, "VIDEO"),
+          x: i.getTime(),
+          y: getCountByDateAndType($mediaInsightsStore, i.getDate(), "VIDEO"),
         });
 
         storeis.push({
-          x: new Date().setDate(i),
-          y: getCountByDateAndType($mediaInsightsStore, i, "STORY"),
+          x: i.getTime(),
+          y: getCountByDateAndType($mediaInsightsStore, i.getDate(), "STORY"),
         });
 
         reels.push({
-          x: new Date().setDate(i),
-          y: getCountByDateAndType($mediaInsightsStore, i, "REELS"),
+          x: i.getTime(),
+          y: getCountByDateAndType($mediaInsightsStore, i.getDate(), "REELS"),
         });
       }
 
@@ -100,8 +105,6 @@
         },
         xaxis: {
           type: "datetime",
-          min: new Date().setDate(sDate),
-          max: new Date().setDate(uDate),
         },
       };
 
