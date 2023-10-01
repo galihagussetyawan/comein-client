@@ -38,7 +38,7 @@
 
     //calculation compare date
     const compareSinceDate = new Date($sinceDateStore);
-    const compareUntilDate = new Date($untilDateStore);
+    const compareUntilDate = new Date($sinceDateStore);
 
     compareSinceDate.setMonth(compareSinceDate.getMonth() - 1);
     compareUntilDate.setMonth(compareUntilDate.getMonth() - 1);
