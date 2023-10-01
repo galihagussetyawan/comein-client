@@ -14,7 +14,10 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     </div>
 
     <div class="md:mt-5">
-      <TabComponent client:visible />
+      <TabComponent
+        client:visible
+        API_BASE_URL={import.meta.env.API_BASE_URL}
+      />
     </div>
   </div>
 </DashboardLayout>

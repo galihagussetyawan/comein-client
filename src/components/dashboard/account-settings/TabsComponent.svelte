@@ -1,6 +1,19 @@
 <script lang="ts">
-  import { TabItem, Tabs } from "flowbite-svelte";
-  let open;
+  import { Modal, TabItem, Tabs } from "flowbite-svelte";
+  import { onMount } from "svelte";
+  import IgModalComponent from "./IgModalComponent.svelte";
+
+  export let API_BASE_URL;
+
+  let defaultModal = false;
+
+  onMount(() => {
+    const url = new URLSearchParams(window.location.search);
+    const openParams = url.get("open");
+    if (openParams) {
+      defaultModal = true;
+    }
+  });
 </script>
 
 <Tabs
@@ -8,9 +21,9 @@
   contentClass="bg-white md:py-5"
   defaultClass="text-ecstasy-500 flex"
 >
-  <TabItem title="Account">account</TabItem>
+  <TabItem open title="Account">account</TabItem>
   <TabItem title="Detail Information">information</TabItem>
-  <TabItem open title="Connect a Profile">
+  <TabItem title="Connect a Profile">
     <p class="md:text-[1.5rem] font-medium">Connect a Profile</p>
     <div class="md:mt-5">
       <p class="font-medium">Select social media to a profile.</p>
@@ -71,12 +84,19 @@
           </svg>
         </div>
         <p class="text-center font-medium">Instagram</p>
-        <button class="w-3/4 py-2 rounded-md border border-slate-500"
-          >Connect</button
+        <button
+          class="w-3/4 py-2 rounded-md border border-slate-500"
+          on:click={() => (defaultModal = true)}
         >
+          Connect
+        </button>
       </div>
       <div class="md:h-48 bg-slate-50" />
       <div class="md:h-48 bg-slate-50" />
     </div>
   </TabItem>
 </Tabs>
+
+<Modal title="Connect a Profile" bind:open={defaultModal}>
+  <IgModalComponent {API_BASE_URL} />
+</Modal>

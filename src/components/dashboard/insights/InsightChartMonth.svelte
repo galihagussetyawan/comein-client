@@ -10,6 +10,8 @@
 
   onMount(async () => {
     const ApexCharts = (await import("apexcharts")).default;
+    console.log($profileInsightsStore);
+
     if ($periodNameStore === "last month") {
       const data = $profileInsightsStore?.insights?.data
         .find((v) => v.name === name)

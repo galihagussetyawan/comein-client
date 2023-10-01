@@ -9,6 +9,29 @@ import {
   writeToCache,
 } from "./auth.services";
 
+export async function saveAccountInstagram(API_BASE_URL: string, data) {
+  const res = await fetch(`${API_BASE_URL}/account`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAccessToken(),
+    },
+    body: JSON.stringify({
+      accountId: data.id,
+      name: data.name,
+      username: data.username,
+      profilePicture: data?.profilePicture,
+      accessToken: data.accessToken,
+    }),
+  });
+
+  interceptorFetching(res);
+  if (await res.json()) {
+    window.location.assign("/dashboard");
+  }
+}
+
 export async function getAccountInstagram(
   API_BASE_URL: string
 ): Promise<Response<IGAccountRes>> {
