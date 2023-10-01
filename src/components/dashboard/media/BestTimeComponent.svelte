@@ -148,12 +148,12 @@
 
 <div>
   <div id="chart-best-time" class="md:min-h-[350px]" />
-  <p class="text-center">
-    Best reach post time
-    {#if maxDay}
+  {#if maxDay && maxDay.y > 0}
+    <p class="text-center">
+      Best reach post time
       <span class="font-medium">
         {maxDay.name} at {maxDay.x < 10 ? "0" + maxDay.x : maxDay.x}:00
       </span>
-    {/if}
-  </p>
+    </p>
+  {/if}
 </div>
