@@ -97,3 +97,21 @@ export async function getMediaInsightsInstagram(
 
   return resJson;
 }
+
+export async function getUserInstagramByUsername(
+  API_BASE_URL: string,
+  q: string
+) {
+  const URL = `${API_BASE_URL}/account/instagram?q=${q}`;
+
+  const res = await fetch(URL, {
+    headers: {
+      Authorization: "Bearer " + getAccessToken(),
+    },
+  });
+
+  interceptorFetching(res);
+  const resJson = await res.json();
+
+  return resJson;
+}
