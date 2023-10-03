@@ -2,33 +2,51 @@
   import { onMount } from "svelte";
   import {
     comparisonProfileInsightsStore,
+    comparisonSinceDateStore,
+    comparisonUntilDateStore,
     periodNameStore,
     profileInsightsStore,
+    sinceDateStore,
+    untilDateStore,
   } from "../../../store/state";
 
   export let name;
 
   onMount(async () => {
     const ApexCharts = (await import("apexcharts")).default;
+    const data = [];
+    const compData = [];
 
     if ($periodNameStore === "last month") {
-      const data = $profileInsightsStore?.insights?.data
-        .find((v) => v.name === name)
-        .values.map((v) => {
-          return {
-            x: new Date(v.end_time).getDate(),
-            y: v.value,
-          };
-        });
+      for (
+        let i = new Date($sinceDateStore);
+        i < new Date($untilDateStore);
+        i.setDate(i.getDate() + 1)
+      ) {
+        const find = $profileInsightsStore.insights?.data
+          .find((v) => v.name === name)
+          .values.find((v) => new Date(v.end_time).getDate() === i.getDate());
+        if (find) {
+          data.push({ x: i.getDate(), y: find?.value });
+        } else {
+          data.push({ x: i.getDate(), y: 0 });
+        }
+      }
 
-      const compData = $comparisonProfileInsightsStore?.insights?.data
-        .find((v) => v.name === name)
-        .values.map((v) => {
-          return {
-            x: new Date(v.end_time).getDate(),
-            y: v.value,
-          };
-        });
+      for (
+        let i = new Date($comparisonSinceDateStore);
+        i < new Date($comparisonUntilDateStore);
+        i.setDate(i.getDate() + 1)
+      ) {
+        const find = $comparisonProfileInsightsStore?.insights?.data
+          .find((v) => v.name === name)
+          .values.find((v) => new Date(v.end_time).getDate() === i.getDate());
+        if (find) {
+          compData.push({ x: i.getDate(), y: find?.value });
+        } else {
+          compData.push({ x: i.getDate(), y: 0 });
+        }
+      }
 
       const options = {
         series: [
