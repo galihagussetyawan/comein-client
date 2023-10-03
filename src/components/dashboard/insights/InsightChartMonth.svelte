@@ -20,7 +20,7 @@
     if ($periodNameStore === "last month") {
       for (
         let i = new Date($sinceDateStore);
-        i < new Date($untilDateStore);
+        i <= new Date($untilDateStore);
         i.setDate(i.getDate() + 1)
       ) {
         const find = $profileInsightsStore.insights?.data
@@ -35,7 +35,7 @@
 
       for (
         let i = new Date($comparisonSinceDateStore);
-        i < new Date($comparisonUntilDateStore);
+        i <= new Date($comparisonUntilDateStore);
         i.setDate(i.getDate() + 1)
       ) {
         const find = $comparisonProfileInsightsStore?.insights?.data
