@@ -29,27 +29,27 @@
   onMount(async () => {
     if (window.location.pathname === "/dashboard/competitors") {
       isShowCompetior = true;
+
+      const resCompetitors = await getCompetitors(API_BASE_URL);
+      if (resCompetitors?.data) {
+        const map: Competitor[] = resCompetitors.data.map((v) => {
+          return {
+            id: v?.id,
+            account: {
+              id: v?.accountId,
+              name: v?.name,
+              username: v?.username,
+              profile_picture_url: v?.picture_url,
+            },
+          };
+        });
+        competitorsStore.set(map);
+      }
     }
 
     const resAccount = await getAccountInstagram(API_BASE_URL);
     if (resAccount?.data) {
       accountStore?.set(resAccount?.data);
-    }
-
-    const resCompetitors = await getCompetitors(API_BASE_URL);
-    if (resCompetitors?.data) {
-      const map: Competitor[] = resCompetitors.data.map((v) => {
-        return {
-          id: v?.id,
-          account: {
-            id: v?.accountId,
-            name: v?.name,
-            username: v?.username,
-            profile_picture_url: v?.picture_url,
-          },
-        };
-      });
-      competitorsStore.set(map);
     }
   });
 </script>
