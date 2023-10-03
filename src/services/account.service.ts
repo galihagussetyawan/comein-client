@@ -138,6 +138,7 @@ export async function addCompetitorAccount(
     }),
   });
 
+  interceptorFetching(res);
   return await res?.json();
 }
 
@@ -149,5 +150,23 @@ export async function getCompetitors(API_BASE_URL: string) {
       Authorization: "Bearer " + getAccessToken(),
     },
   });
+
+  interceptorFetching(res);
+  return await res?.json();
+}
+
+export async function deleteCompetitor(
+  API_BASE_URL: string,
+  competitorId: string
+) {
+  const URL = `${API_BASE_URL}/account/competitor?id=${competitorId}`;
+  const res = await fetch(URL, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + getAccessToken(),
+    },
+  });
+
+  interceptorFetching(res);
   return await res?.json();
 }

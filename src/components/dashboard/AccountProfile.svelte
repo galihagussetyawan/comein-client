@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import CompetitorsModalComponent from "../../components/dashboard/CompetitorsModalComponent.svelte";
   import {
+    deleteCompetitor,
     getAccountInstagram,
     getCompetitors,
   } from "../../services/account.service";
@@ -15,6 +16,10 @@
   let competitorGroup = [];
 
   function removeCompetitor() {
+    competitorGroup.forEach(async (id) => {
+      await deleteCompetitor(API_BASE_URL, id);
+    });
+
     const filter = $competitorsStore.filter(
       (v) => v?.id !== competitorGroup.find((id) => id === v?.id)
     );
