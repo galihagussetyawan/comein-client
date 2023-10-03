@@ -140,3 +140,14 @@ export async function addCompetitorAccount(
 
   return await res?.json();
 }
+
+export async function getCompetitors(API_BASE_URL: string) {
+  const URL = `${API_BASE_URL}/account/competitor`;
+
+  const res = await fetch(URL, {
+    headers: {
+      Authorization: "Bearer " + getAccessToken(),
+    },
+  });
+  return await res?.json();
+}

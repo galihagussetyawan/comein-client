@@ -1,13 +1,25 @@
-<script>
-  import { Dropdown, Modal } from "flowbite-svelte";
+<script lang="ts">
+  import { Checkbox, Dropdown, Modal } from "flowbite-svelte";
   import { onMount } from "svelte";
   import CompetitorsModalComponent from "../../components/dashboard/CompetitorsModalComponent.svelte";
-  import { getAccountInstagram } from "../../services/account.service";
+  import {
+    getAccountInstagram,
+    getCompetitors,
+  } from "../../services/account.service";
   import { accountStore, competitorsStore } from "../../store/state";
+  import type { IGBussinesDiscoveryRes } from "../../utils/types/ig-bussines-discovery-res.interface";
 
   export let API_BASE_URL;
   let isShowCompetior = false;
   let defaultModal = false;
+  let competitorGroup = [];
+
+  function removeCompetitor() {
+    const filter = $competitorsStore.filter(
+      (v) => v?.id !== competitorGroup.find((id) => id === v?.id)
+    );
+    competitorsStore.set(filter);
+  }
 
   onMount(async () => {
     if (window.location.pathname === "/dashboard/competitors") {
@@ -17,6 +29,22 @@
     const resAccount = await getAccountInstagram(API_BASE_URL);
     if (resAccount?.data) {
       accountStore?.set(resAccount?.data);
+    }
+
+    const resCompetitors = await getCompetitors(API_BASE_URL);
+    if (resCompetitors?.data) {
+      const map: IGBussinesDiscoveryRes[] = resCompetitors?.data?.map((v) => {
+        return {
+          id: v?.id,
+          business_discovery: {
+            id: v?.id,
+            name: v?.name,
+            username: v?.username,
+            profile_picture_url: v?.profile_picture_url,
+          },
+        };
+      });
+      competitorsStore.set(map);
     }
   });
 </script>
@@ -228,6 +256,11 @@
                 </svg>
               </span>
               <p>{data?.business_discovery?.username}</p>
+              <Checkbox
+                bind:group={competitorGroup}
+                value={data.id}
+                class="absolute end-0 text-ecstasy-600 focus:ring-ecstasy-600"
+              />
             </li>
           {/each}
         </ul>
@@ -237,7 +270,11 @@
         </div>
       {/if}
       <div class="md:flex justify-between md:p-3 border-t">
-        <button class="font-light">Remove</button>
+        <button
+          class="font-light"
+          on:click={removeCompetitor}
+          disabled={competitorGroup.length === 0 && true}>Remove</button
+        >
         <button
           class="font-medium text-ecstasy-600"
           on:click={() => (defaultModal = true)}>Add</button
