@@ -1,6 +1,9 @@
 <script lang="ts">
   import { Input, Label } from "flowbite-svelte";
-  import { getUserInstagramByUsername } from "../../services/account.service";
+  import {
+    addCompetitorAccount,
+    getUserInstagramByUsername,
+  } from "../../services/account.service";
   import { competitorsStore } from "../../store/state";
   import type { IGBussinesDiscoveryRes } from "../../utils/types/ig-bussines-discovery-res.interface";
 
@@ -25,7 +28,9 @@
     result = null;
   }
 
-  function addAccount() {
+  async function addAccount() {
+    await addCompetitorAccount(API_BASE_URL, result);
+
     if ($competitorsStore.length === 0) {
       competitorsStore.set([result]);
     } else {

@@ -1,4 +1,5 @@
 import { IGAccountRes } from "../utils/types/ig-account-res.interface";
+import { IGBussinesDiscoveryRes } from "../utils/types/ig-bussines-discovery-res.interface";
 import { IGMediaRes } from "../utils/types/ig-media-insights.res.interface";
 import { IGProfileRes } from "../utils/types/ig-profile-insights-res.interface";
 import { Response } from "../utils/types/response.interface";
@@ -114,4 +115,28 @@ export async function getUserInstagramByUsername(
   const resJson = await res.json();
 
   return resJson;
+}
+
+export async function addCompetitorAccount(
+  API_BASE_URL: string,
+  data: IGBussinesDiscoveryRes
+) {
+  const URL = `${API_BASE_URL}/account/competitor`;
+
+  const res = await fetch(URL, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAccessToken(),
+    },
+    body: JSON.stringify({
+      accountId: data?.id,
+      name: data?.business_discovery?.name,
+      username: data?.business_discovery?.username,
+      profilePricture: data?.business_discovery?.profile_picture_url,
+    }),
+  });
+
+  return await res?.json();
 }
