@@ -36,14 +36,23 @@ export async function saveAccountInstagram(API_BASE_URL: string, data) {
 export async function getAccountInstagram(
   API_BASE_URL: string
 ): Promise<Response<IGAccountRes>> {
-  const res = await fetch(`${API_BASE_URL}/account`, {
+  const URL = `${API_BASE_URL}/account`;
+  const existCache: Response<IGAccountRes> = readFromCache(URL);
+
+  if (existCache) {
+    return existCache;
+  }
+  const res = await fetch(URL, {
     headers: {
       Authorization: "Bearer " + getAccessToken(),
     },
   });
 
   interceptorFetching(res);
-  return await res.json();
+
+  const resJson: Response<IGAccountRes> = await res?.json();
+  writeToCache(URL, resJson);
+  return resJson;
 }
 
 export async function getProfileInsightsInstagram(
