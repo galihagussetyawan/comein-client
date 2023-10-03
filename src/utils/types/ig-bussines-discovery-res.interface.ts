@@ -3,7 +3,7 @@ export interface IGBussinesDiscoveryRes {
   id: string;
 }
 
-interface BusinessDiscovery {
+export interface BusinessDiscovery {
   id: string;
   username: string;
   name: string;

@@ -7,7 +7,7 @@
     getCompetitors,
   } from "../../services/account.service";
   import { accountStore, competitorsStore } from "../../store/state";
-  import type { IGBussinesDiscoveryRes } from "../../utils/types/ig-bussines-discovery-res.interface";
+  import type { Competitor } from "../../utils/types/competitor.interface";
 
   export let API_BASE_URL;
   let isShowCompetior = false;
@@ -33,14 +33,14 @@
 
     const resCompetitors = await getCompetitors(API_BASE_URL);
     if (resCompetitors?.data) {
-      const map: IGBussinesDiscoveryRes[] = resCompetitors?.data?.map((v) => {
+      const map: Competitor[] = resCompetitors.data.map((v) => {
         return {
           id: v?.id,
-          business_discovery: {
-            id: v?.id,
+          account: {
+            id: v?.accountId,
             name: v?.name,
             username: v?.username,
-            profile_picture_url: v?.profile_picture_url,
+            profile_picture_url: v?.picture_url,
           },
         };
       });
@@ -255,7 +255,7 @@
                   </g>
                 </svg>
               </span>
-              <p>{data?.business_discovery?.username}</p>
+              <p>{data?.account?.username}</p>
               <Checkbox
                 bind:group={competitorGroup}
                 value={data.id}

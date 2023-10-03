@@ -1,6 +1,6 @@
 import { persistentAtom } from "@nanostores/persistent";
 import { atom, onMount } from "nanostores";
-import { IGBussinesDiscoveryRes } from "../utils/types/ig-bussines-discovery-res.interface";
+import { Competitor } from "../utils/types/competitor.interface";
 
 export const isLoggedIn = atom<boolean>(false);
 
@@ -14,14 +14,10 @@ export const comparisonSinceDateStore = atom<string>(null);
 export const comparisonUntilDateStore = atom<string>(null);
 
 export const accountStore = atom<any>(null);
-export const competitorsStore = persistentAtom<IGBussinesDiscoveryRes[]>(
-  "_cmp",
-  [],
-  {
-    encode: JSON.stringify,
-    decode: JSON.parse,
-  }
-);
+export const competitorsStore = persistentAtom<Competitor[]>("_cmp", [], {
+  encode: JSON.stringify,
+  decode: JSON.parse,
+});
 export const profileInsightsStore = persistentAtom<any>("_pi", null, {
   encode: JSON.stringify,
   decode: JSON.parse,

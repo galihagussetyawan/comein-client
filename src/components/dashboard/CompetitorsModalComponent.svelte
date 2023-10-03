@@ -5,6 +5,7 @@
     getUserInstagramByUsername,
   } from "../../services/account.service";
   import { competitorsStore } from "../../store/state";
+  import type { Competitor } from "../../utils/types/competitor.interface";
   import type { IGBussinesDiscoveryRes } from "../../utils/types/ig-bussines-discovery-res.interface";
 
   export let API_BASE_URL;
@@ -29,17 +30,37 @@
   }
 
   async function addAccount() {
-    await addCompetitorAccount(API_BASE_URL, result);
+    const isExistAccount = $competitorsStore.find(
+      (v) => v?.account?.id === result?.id
+    );
 
-    if ($competitorsStore.length === 0) {
-      competitorsStore.set([result]);
-    } else {
-      $competitorsStore.forEach((v) => {
-        if (v.id === result.id) {
-          return;
-        }
-        competitorsStore.set([...$competitorsStore, result]);
-      });
+    if (isExistAccount) {
+      result = null;
+      return;
+    }
+
+    const res = await addCompetitorAccount(API_BASE_URL, result);
+    const mapping: Competitor = {
+      id: res?.data?.id,
+      account: {
+        id: res?.data?.accountId,
+        username: res?.data?.username,
+        name: res?.data?.name,
+        profile_picture_url: res?.data?.profile_picture_url,
+      },
+    };
+
+    if (res) {
+      if ($competitorsStore.length === 0) {
+        competitorsStore.set([mapping]);
+      } else {
+        $competitorsStore.forEach((v) => {
+          if (v.id === result.id) {
+            return;
+          }
+          competitorsStore.set([...$competitorsStore, mapping]);
+        });
+      }
     }
 
     result = null;
