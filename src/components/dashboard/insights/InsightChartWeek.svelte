@@ -20,7 +20,8 @@
             }),
             y: v.value,
           };
-        });
+        })
+        .reverse();
 
       const compData = $comparisonProfileInsightsStore?.insights?.data
         .find((v) => v.name === name)
@@ -31,7 +32,8 @@
             }),
             y: v.value,
           };
-        });
+        })
+        .reverse();
 
       const options = {
         series: [
