@@ -27,9 +27,13 @@
   }
 
   onMount(async () => {
-    if (window.location.pathname === "/dashboard/competitors") {
-      isShowCompetior = true;
+    const resAccount = await getAccountInstagram(API_BASE_URL);
+    if (resAccount?.data) {
+      accountStore?.set(resAccount?.data);
+    }
 
+    if (window?.location?.pathname === "/dashboard/competitors") {
+      isShowCompetior = true;
       const resCompetitors = await getCompetitors(API_BASE_URL);
       if (resCompetitors?.data) {
         const map: Competitor[] = resCompetitors.data.map((v) => {
@@ -45,11 +49,6 @@
         });
         competitorsStore.set(map);
       }
-    }
-
-    const resAccount = await getAccountInstagram(API_BASE_URL);
-    if (resAccount?.data) {
-      accountStore?.set(resAccount?.data);
     }
   });
 </script>

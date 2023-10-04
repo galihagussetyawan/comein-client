@@ -78,6 +78,7 @@ export async function getProfileInsightsInstagram(
 
   const resJson: Response<IGProfileRes> = await res.json();
   writeToCache(URL, resJson);
+
   return resJson;
 }
 

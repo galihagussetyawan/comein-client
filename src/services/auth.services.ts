@@ -43,6 +43,10 @@ export function readFromCache<T>(URL: string): Response<T> {
 }
 
 export function writeToCache<T>(URL: string, data: Response<T>) {
+  if (Number(data?.status) !== 200) {
+    return;
+  }
+
   let cache = getLocalStorage("_cache");
 
   const expires = new Date(Date.now());
