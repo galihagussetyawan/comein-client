@@ -1,14 +1,16 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { mediaInsightsStore } from "../../../store/state";
+  import { mediaInsightsStore, periodNameStore } from "../../../store/state";
 
-  // match(/#\w+/g)
-  let data = null;
-  onMount(async () => {
+  let topEngagmentHashtags = null;
+  let topReachHastags = null;
+  let mostUsedHastags = null;
+
+  function calculate() {
     const temp = [];
     const hashtags = [];
 
-    $mediaInsightsStore.forEach((v) => {
+    $mediaInsightsStore?.forEach((v) => {
       if (v?.caption && v?.caption?.match(/#\w+/g)) {
         temp.push({
           values: v?.caption?.match(/#\w+/g),
@@ -49,8 +51,31 @@
       return acc;
     }, []);
 
-    data = result;
+    topEngagmentHashtags = result
+      ?.map((v) => {
+        return v;
+      })
+      .sort((a, b) => b.engagment_avg - a.engagment_avg);
+
+    topReachHastags = result
+      ?.map((v) => {
+        return v;
+      })
+      .sort((a, b) => b.reach_avg - a.reach_avg);
+
+    mostUsedHastags = result
+      ?.map((v) => {
+        return v;
+      })
+      .sort((a, b) => b.quantity - a.quantity);
+  }
+  onMount(() => {
+    calculate();
   });
+
+  $: if ($periodNameStore && $mediaInsightsStore) {
+    calculate();
+  }
 </script>
 
 <div class="md:min-h-[350px] grid md:grid-cols-3 gap-20 md:gap-10 md:mt-5 p-5">
@@ -60,10 +85,8 @@
       <p class="md:text-[0.9rem]">Top Hashtags by Engagment</p>
     </div>
     <ul class="md:text-[1.1rem] font-medium mt-3">
-      {#if data}
-        {#each data
-          .sort((a, b) => b.engagment_avg - a.engagment_avg)
-          .splice(0, data.length > 10 ? 10 : data.length) as v}
+      {#if topEngagmentHashtags}
+        {#each topEngagmentHashtags.splice(0, topReachHastags.length > 10 ? 10 : topReachHastags.length) as v}
           <li class="flex justify-between py-1">
             <p>{v?.name}</p>
             <p>{v?.engagment_avg}</p>
@@ -80,10 +103,8 @@
       <p class="md:text-[0.9rem]">Top Hashtags by Reach</p>
     </div>
     <ul class="md:text-[1.1rem] font-medium mt-3">
-      {#if data}
-        {#each data
-          .sort((a, b) => b.reach_avg - a.reach_avg)
-          .splice(0, data.length > 10 ? 10 : data.length) as v}
+      {#if topReachHastags}
+        {#each topReachHastags.splice(0, topReachHastags.length > 10 ? 10 : topReachHastags.length) as v}
           <li class="flex justify-between py-1">
             <p>{v?.name}</p>
             <p>{v?.reach_avg}</p>
@@ -100,10 +121,8 @@
       <p class="md:text-[0.9rem]">Most Used Hashtags</p>
     </div>
     <ul class="md:text-[1.1rem] font-medium mt-3">
-      {#if data}
-        {#each data
-          .sort((a, b) => b.quantity - a.quantity)
-          .splice(0, data.length > 10 ? 10 : data.length) as v}
+      {#if mostUsedHastags}
+        {#each mostUsedHastags.splice(0, mostUsedHastags.length > 10 ? 10 : mostUsedHastags.length) as v}
           <li class="flex justify-between py-1">
             <p>{v?.name}</p>
             <p>{v?.quantity}</p>
