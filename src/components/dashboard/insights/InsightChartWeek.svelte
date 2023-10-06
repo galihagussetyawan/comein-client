@@ -79,4 +79,6 @@
   });
 </script>
 
-<div id={`chart-${name}`} />
+{#if $periodNameStore && $profileInsightsStore && $comparisonProfileInsightsStore}
+  <div id={`chart-${name}`} />
+{/if}
