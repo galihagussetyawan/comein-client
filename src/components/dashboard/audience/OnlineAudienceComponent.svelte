@@ -117,6 +117,20 @@
       xaxis: {
         type: "datetime",
       },
+      tooltip: {
+        y: {
+          formatter: (value) => {
+            return value + " online users";
+          },
+        },
+        x: {
+          formatter: (value) => {
+            return new Date(value).toLocaleDateString("en", {
+              dateStyle: "full",
+            });
+          },
+        },
+      },
     };
 
     const chart = new ApexCharts(
