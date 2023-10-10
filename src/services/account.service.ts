@@ -1,4 +1,5 @@
 import { IGAccountRes } from "../utils/types/ig-account-res.interface";
+import { IGAudienceDemographicsRes } from "../utils/types/ig-audience-demographics-res.interface";
 import { IGBussinesDiscoveryRes } from "../utils/types/ig-bussines-discovery-res.interface";
 import { IGMediaRes } from "../utils/types/ig-media-insights.res.interface";
 import { IGOnlineAudienceRes } from "../utils/types/ig-online-audience-res.interface";
@@ -190,6 +191,32 @@ export async function getOnlineAudienceHistory(
 ): Promise<Response<IGOnlineAudienceRes>> {
   const URL = `${API_BASE_URL}/account/instagram/audience/online?since=${since}&until=${until}`;
   const existCache: Response<IGOnlineAudienceRes> = readFromCache(URL);
+
+  if (existCache) {
+    return existCache;
+  }
+
+  const res = await fetch(URL, {
+    headers: {
+      Authorization: "Bearer " + getAccessToken(),
+    },
+  });
+
+  interceptorFetching(res);
+
+  const resJson = await res?.json();
+  writeToCache(URL, resJson);
+
+  return resJson;
+}
+
+export async function getAudienceDemographics(
+  API_BASE_URL: string,
+  breakdown: string
+): Promise<Response<IGAudienceDemographicsRes>> {
+  const URL = `${API_BASE_URL}/account/instagram/audience/demographics?breakdown=${breakdown}`;
+
+  const existCache: Response<IGAudienceDemographicsRes> = readFromCache(URL);
 
   if (existCache) {
     return existCache;
