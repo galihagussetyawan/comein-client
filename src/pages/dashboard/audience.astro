@@ -1,11 +1,24 @@
 ---
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import OnlineAudienceComponent from "../../components/dashboard/audience/OnlineAudienceComponent.svelte";
 ---
 
 <DashboardLayout title="Audience | Dashboard">
   <div
     class="w-full max-h-[calc(100vh-10vh)] md:p-5 md:overflow-hidden md:overflow-y-auto"
   >
-    <p>Audience Page</p>
+    <!-- online audience history -->
+    <div>
+      <p class="font-medium text-[1.2rem]">Online Audience History</p>
+      <p class="font-light">
+        Total number of the IG User's followers who were online during the last
+        30 days.
+      </p>
+      <OnlineAudienceComponent
+        API_BASE_URL={import.meta.env.API_BASE_URL}
+        client:visible
+      />
+    </div>
+    <!-- END - online audience history -->
   </div>
 </DashboardLayout>

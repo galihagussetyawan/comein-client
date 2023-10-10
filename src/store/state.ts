@@ -1,6 +1,7 @@
 import { persistentAtom } from "@nanostores/persistent";
 import { atom, onMount } from "nanostores";
 import { Competitor } from "../utils/types/competitor.interface";
+import { IGOnlineAudienceRes } from "../utils/types/ig-online-audience-res.interface";
 
 export const isLoggedIn = atom<boolean>(false);
 
@@ -34,6 +35,15 @@ export const mediaInsightsStore = persistentAtom<any>("_mi", null, {
   encode: JSON.stringify,
   decode: JSON.parse,
 });
+
+export const onlineAudienceHistoryStore = persistentAtom<IGOnlineAudienceRes>(
+  "_oah",
+  null,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  }
+);
 
 onMount(isLoggedIn, () => {
   if (localStorage.getItem("profile")) {

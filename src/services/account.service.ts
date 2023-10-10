@@ -1,6 +1,7 @@
 import { IGAccountRes } from "../utils/types/ig-account-res.interface";
 import { IGBussinesDiscoveryRes } from "../utils/types/ig-bussines-discovery-res.interface";
 import { IGMediaRes } from "../utils/types/ig-media-insights.res.interface";
+import { IGOnlineAudienceRes } from "../utils/types/ig-online-audience-res.interface";
 import { IGProfileRes } from "../utils/types/ig-profile-insights-res.interface";
 import { Response } from "../utils/types/response.interface";
 import {
@@ -179,4 +180,31 @@ export async function deleteCompetitor(
 
   interceptorFetching(res);
   return await res?.json();
+}
+
+// audience services
+export async function getOnlineAudienceHistory(
+  API_BASE_URL: string,
+  since: string,
+  until: string
+): Promise<Response<IGOnlineAudienceRes>> {
+  const URL = `${API_BASE_URL}/account/instagram/audience/online?since=${since}&until=${until}`;
+  const existCache: Response<IGOnlineAudienceRes> = readFromCache(URL);
+
+  if (existCache) {
+    return existCache;
+  }
+
+  const res = await fetch(URL, {
+    headers: {
+      Authorization: "Bearer " + getAccessToken(),
+    },
+  });
+
+  interceptorFetching(res);
+
+  const resJson = await res?.json();
+  writeToCache(URL, resJson);
+
+  return resJson;
 }
