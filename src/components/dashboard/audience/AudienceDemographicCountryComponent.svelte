@@ -10,8 +10,9 @@
 
   onMount(async () => {
     const ApexCharts = (await import("apexcharts")).default;
-    const res = await getAudienceDemographics(API_BASE_URL, "country");
 
+    const res = await getAudienceDemographics(API_BASE_URL, "country");
+    const len = res?.data?.data[0]?.total_value?.breakdowns[0]?.results?.length;
     const mapping = res?.data?.data[0]?.total_value?.breakdowns[0]?.results
       ?.map((v) => {
         return {
@@ -22,7 +23,12 @@
       .sort((a, b) => b?.y - a?.y);
 
     const options = {
-      series: [{ name: "Audience by Country", data: mapping }],
+      series: [
+        {
+          name: "Audience by Country",
+          data: mapping?.splice(0, len > 10 ? 10 : len),
+        },
+      ],
       chart: {
         height: 350,
         type: "bar",
