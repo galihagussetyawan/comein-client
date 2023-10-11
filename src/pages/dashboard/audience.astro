@@ -2,6 +2,7 @@
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
 import OnlineAudienceComponent from "../../components/dashboard/audience/OnlineAudienceComponent.svelte";
 import AudienceDemographicCountryComponent from "../../components/dashboard/audience/AudienceDemographicCountryComponent.svelte";
+import AudienceDemographicCity from "../../components/dashboard/audience/AudienceDemographicCity.svelte";
 ---
 
 <DashboardLayout title="Audience | Dashboard">
@@ -30,7 +31,17 @@ import AudienceDemographicCountryComponent from "../../components/dashboard/audi
       <p class="font-light">
         Review your audience demographics by Geolocation.
       </p>
+      <p class="text-center text-[0.9rem] underline">
+        Top 10 contries by audience demographic
+      </p>
       <AudienceDemographicCountryComponent
+        API_BASE_URL={import.meta.env.API_BASE_URL}
+        client:visible
+      />
+      <p class="text-center text-[0.9rem] underline">
+        Top 10 cities by audience demographic
+      </p>
+      <AudienceDemographicCity
         API_BASE_URL={import.meta.env.API_BASE_URL}
         client:visible
       />
