@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { getAudienceDemographics } from "../../../services/account.service";
+  import { audienceDemographicByCountryStore } from "../../../store/state";
 
   export let API_BASE_URL;
 
@@ -21,6 +22,8 @@
         };
       })
       .sort((a, b) => b?.y - a?.y);
+
+    audienceDemographicByCountryStore.set(mapping);
 
     const options = {
       series: [

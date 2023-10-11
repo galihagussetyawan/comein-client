@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { getAudienceDemographics } from "../../../services/account.service";
+  import { audienceDemographicByCityStore } from "../../../store/state";
 
   export let API_BASE_URL;
 
@@ -13,11 +14,17 @@
       .map((v) => {
         return { x: v?.dimension_values[0], y: v.value };
       })
-      .sort((a, b) => b.y - a.y)
-      .splice(0, len > 10 ? 10 : len);
+      .sort((a, b) => b.y - a.y);
+
+    audienceDemographicByCityStore.set(mapping);
 
     const options = {
-      series: [{ name: "Audience by City", data: mapping }],
+      series: [
+        {
+          name: "Audience by City",
+          data: mapping?.splice(0, len > 10 ? 10 : len),
+        },
+      ],
       chart: {
         height: 350,
         type: "bar",
