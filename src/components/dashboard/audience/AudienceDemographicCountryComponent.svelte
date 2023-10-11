@@ -29,7 +29,10 @@
       series: [
         {
           name: "Audience by Country",
-          data: mapping?.splice(0, len > 10 ? 10 : len),
+          data: $audienceDemographicByCountryStore?.slice(
+            0,
+            len > 10 ? 10 : len
+          ),
         },
       ],
       chart: {

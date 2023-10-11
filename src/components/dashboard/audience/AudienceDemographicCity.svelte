@@ -22,7 +22,7 @@
       series: [
         {
           name: "Audience by City",
-          data: mapping?.splice(0, len > 10 ? 10 : len),
+          data: $audienceDemographicByCityStore.slice(0, len > 10 ? 10 : len),
         },
       ],
       chart: {
