@@ -1,0 +1,46 @@
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { getAudienceDemographics } from "../../../services/account.service";
+
+  export let API_BASE_URL;
+
+  function getCountryName(code: string) {
+    return new Intl.DisplayNames(["en"], { type: "region" }).of(code);
+  }
+
+  onMount(async () => {
+    const ApexCharts = (await import("apexcharts")).default;
+    const res = await getAudienceDemographics(API_BASE_URL, "country");
+
+    const mapping = res?.data?.data[0]?.total_value?.breakdowns[0]?.results
+      ?.map((v) => {
+        return {
+          x: getCountryName(v?.dimension_values[0]),
+          y: v?.value,
+        };
+      })
+      .sort((a, b) => b?.y - a?.y);
+
+    const options = {
+      series: [{ name: "Audience by Country", data: mapping }],
+      chart: {
+        height: 350,
+        type: "bar",
+        zoom: {
+          enabled: false,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+    };
+
+    const chart = new ApexCharts(
+      document.querySelector("#chart-audience-demographic-country"),
+      options
+    );
+    chart.render();
+  });
+</script>
+
+<div id="chart-audience-demographic-country" class="md:min-h-[350px]" />
