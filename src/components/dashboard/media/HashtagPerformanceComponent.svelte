@@ -70,12 +70,10 @@
       .sort((a, b) => b.quantity - a.quantity);
   }
   onMount(() => {
-    calculate();
+    periodNameStore.subscribe((v) => {
+      calculate();
+    });
   });
-
-  $: if ($periodNameStore && $mediaInsightsStore) {
-    calculate();
-  }
 </script>
 
 <div class="md:min-h-[350px] grid md:grid-cols-3 gap-20 md:gap-10 md:mt-5 p-5">
